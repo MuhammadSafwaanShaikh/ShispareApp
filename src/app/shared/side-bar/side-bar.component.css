@@ -1,0 +1,27 @@
+li {
+    list-style: none;
+}
+
+a {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+}
+
+i {
+    margin-right: 5px;
+}
+
+a img {
+    width: 22px;
+    height: 22px;
+    background-color: #ffffff;
+    filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(70deg) brightness(99%) contrast(107%);
+    background-color: #ffffff;
+    margin-right: 5px;
+}
+
+.d-flex {
+    background-color: #00123e;
+}
