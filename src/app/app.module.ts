@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -17,7 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    BrowserModule, RouterModule
+    BrowserModule, RouterModule,AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
