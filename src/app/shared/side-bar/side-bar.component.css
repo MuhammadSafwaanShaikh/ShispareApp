@@ -1,11 +1,16 @@
 li {
     list-style: none;
+
 }
 
 a {
     color: white;
     font-size: 18px;
     margin-top: 10px;
+}
+
+a:nth-child(3) {
+    background-color: lightblue;
 }
 
 li:last-child {
@@ -24,9 +29,4 @@ a img {
     filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(70deg) brightness(99%) contrast(107%);
     background-color: #ffffff;
     margin-right: 5px;
-}
-
-.d-flex {
-    background-color: #00123e;
-    margin-top: -9px;
 }

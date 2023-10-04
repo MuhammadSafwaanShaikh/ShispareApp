@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { concatMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  constructor(private router: Router) { }
+
+  navigateToDashboard() {
+    this.router.navigate(['/shared']);
+  }
 
 }

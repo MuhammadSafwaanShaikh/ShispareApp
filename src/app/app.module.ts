@@ -7,6 +7,8 @@ import { SideBarComponent } from './shared/side-bar/side-bar.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedComponent } from './shared/shared.component';
+import { RecruitmentComponent } from './recruitment/recruitment.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,10 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     SideBarComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SharedComponent,
+    RecruitmentComponent
+
   ],
   imports: [
     BrowserModule, RouterModule, AppRoutingModule

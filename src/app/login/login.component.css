@@ -8,8 +8,8 @@
     background-size: auto 100%;
 }
 
-@media (min-width: 1025px) {
-    .h-custom-2 {
-        height: 100%;
-    }
+.logo-heading span {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px white;
 }
