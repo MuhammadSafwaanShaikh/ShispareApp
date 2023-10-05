@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './feature/login/login.component';
 
 import { SharedComponent } from './shared/shared.component';
-import { DashboardComponent } from './main/dashboard/dashboard.component';
-import { RecruitmentComponent } from './main/recruitment/recruitment.component';
+import { DashboardComponent } from './feature/dashboard/dashboard.component';
+import { RecruitmentComponent } from './feature/recruitment/recruitment.component';
 
 
 const routes: Routes = [

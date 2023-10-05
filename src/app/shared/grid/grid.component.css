@@ -1,0 +1,20 @@
+:host ::ng-deep .custom-table .p-datatable {
+    border-radius: 5px !important;
+    /* Adjust the value to your desired border radius */
+    border: 1px solid #e5e5e5 !important;
+    /* Optionally, you can add a border */
+    overflow: hidden;
+    margin: 25px;
+
+}
+
+th {
+    font-size: 13px;
+    color: gray;
+    font-weight: 500;
+}
+
+.custom-table tr {
+    border-bottom: 1px solid #e5e5e5
+        /* Light gray border */
+}
