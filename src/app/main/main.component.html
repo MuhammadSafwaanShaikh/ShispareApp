@@ -1,0 +1,55 @@
+<p-table [value]="employee" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:20%">EMPLOYEE #</th>
+            <th style="width:20%">EMPLOYEE</th>
+            <th style="width:20%">ATTENDANCE DATE</th>
+            <th style="width:20%">CHANGE TYPE</th>
+            <th style="width:25%">STATUS</th>
+            <th style="width:25%">APPROVALS</th>
+            <th style="width:25%">ADDONS</th>
+            <th style="width:25%">ACTION</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+        <tr>
+
+            <td> <input type="checkbox" name="" id="">{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.country}}</td>
+            <td>{{ employee.company }}</td>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>
+
+<!-- <table>
+    <thead>
+        <tr>
+            <th>EMPLOYEE #</th>
+            <th>EMPLOYEE</th>
+            <th>ATTENDANCE DATE</th>
+            <th>CHANGE TYPE</th>
+            <th>STATUS</th>
+            <th>APPROVALS</th>
+            <th>ADDONS</th>
+            <th>ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employees of employee">
+            <td>{{ employees.name }}</td>
+            <td>{{ employees.country }}</td>
+            <td>{{ employees.company }}</td>
+
+        </tr>
+    </tbody>
+</table> -->
