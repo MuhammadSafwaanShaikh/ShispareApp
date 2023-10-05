@@ -12,4 +12,16 @@ tr {
     border-color: solid black;
     
     border-width: 2px;
-} */
+} 
+.custom-table {
+    border-radius: 10px; 
+  } */
+  :host ::ng-deep .custom-table .p-datatable {
+    border-radius: 10px !important; /* Adjust the value to your desired border radius */
+    border: 1px solid #ccc !important; /* Optionally, you can add a border */
+    overflow: hidden;
+  } 
+  .custom-table tr {
+    border: 1px solid #ccc; /* Light gray border */
+  }
+  
