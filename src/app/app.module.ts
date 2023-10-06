@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { SideBarComponent } from './core/side-bar/side-bar.component';
 import { LoginComponent } from './feature/login/login.component';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedComponent } from './shared/shared.component';
 
@@ -29,7 +29,7 @@ import { RecruitmentComponent } from './feature/recruitment/recruitment.componen
 
   ],
   imports: [
-    BrowserModule, RouterModule, AppRoutingModule, TableModule, ButtonModule
+    BrowserModule, RouterModule, AppRoutingModule, TableModule, ButtonModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
