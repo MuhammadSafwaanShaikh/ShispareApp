@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-grid',
+  templateUrl: './grid.component.html',
+  styleUrls: ['./grid.component.css']
 })
-export class MainComponent {
+export class GridComponent {
   @Input() employee: any[] = []
   constructor() { }
 
