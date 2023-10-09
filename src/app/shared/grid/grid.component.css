@@ -1,3 +1,27 @@
+.nav-pills {
+    border: 1px solid #e5e5e5;
+    margin-left: 25px;
+    width: 96%;
+    border-radius: 5px;
+
+}
+
+.nav-item {
+    padding: 6px;
+
+}
+
+.nav-item a {
+    color: black;
+
+}
+
+.nav-item a:hover {
+    background-color: rgb(109, 167, 255);
+    cursor: pointer;
+    color: white;
+}
+
 :host ::ng-deep .custom-table .p-datatable {
     border-radius: 5px !important;
     /* Adjust the value to your desired border radius */

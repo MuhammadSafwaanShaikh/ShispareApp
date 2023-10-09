@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  private dashboardTableHeading: string[] = [];
+  private recruitmentTableHeading: string[] = [];
   private _employee: any[] = [];
 
   set employee(employee: any[]) {
@@ -13,5 +15,11 @@ export class DataService {
     return this._employee
   }
 
+  getDashboardTableHeading(): string[] {
+    return this.dashboardTableHeading;
+  }
+  getRecruitmentTableHeading(): string[] {
+    return this.recruitmentTableHeading;
+  }
   constructor() { }
 }

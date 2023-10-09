@@ -1,17 +1,41 @@
 import { Component, Input } from '@angular/core';
 
-
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css']
 })
 export class GridComponent {
-  @Input() employee: any[] = []
-  constructor() { }
+  @Input() tableHeading: string[] = [];
+  @Input() employee: any[] = [];
+  isDropdownOpen: boolean = false;
+  selectAll: boolean = false;
 
-  ngOnInit() {
-
+  constructor() {
   }
-}
 
+  toggleSelectAll(): void {
+    this.employee.forEach(emp => {
+      emp.checked = this.selectAll;
+    });
+  }
+
+  toggleDropdown(employee: any): void {
+    employee.isDropdownOpen = !employee.isDropdownOpen;
+    this.employee.forEach((emp) => {
+      if (emp !== employee) {
+        emp.isDropdownOpen = false;
+      }
+    });
+  }
+
+  editItem(employee: any): void {
+    console.log('Edit clicked for employee:', employee);
+  }
+  viewItem(employee: any): void {
+    console.log('View clicked for employee:', employee);
+  }
+  ngOnInit() {
+  }
+
+}
