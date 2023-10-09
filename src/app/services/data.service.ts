@@ -7,6 +7,7 @@ export class DataService {
   private dashboardTableHeading: string[] = [];
   private recruitmentTableHeading:string[]=[];
   private _employee: any[] = [];
+  private attendanceTableHeading:string[]=[];
 
   set employee(employee: any[]) {
     this._employee = employee;
@@ -20,6 +21,9 @@ export class DataService {
   }
   getrecruitmentTableHeading():string[]{
     return this.recruitmentTableHeading;
+  }
+  getattendanceTableHeading():string[]{
+    return this.attendanceTableHeading
   }
 
   constructor() { }

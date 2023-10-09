@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { GridComponent } from './shared/grid/grid.component';
 import { DashboardComponent } from './feature/dashboard/dashboard.component';
 import { RecruitmentComponent } from './feature/recruitment/recruitment.component';
+import { AttendanceComponent } from './feature/attendance/attendance.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { RecruitmentComponent } from './feature/recruitment/recruitment.componen
     DashboardComponent,
     SharedComponent,
     RecruitmentComponent,
-    GridComponent
+    GridComponent,
+    AttendanceComponent
 
   ],
   imports: [
