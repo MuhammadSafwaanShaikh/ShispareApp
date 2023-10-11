@@ -42,3 +42,14 @@ th {
     border-bottom: 1px solid #e5e5e5
         /* Light gray border */
 }
+
+.dropdown-toggle {
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+.dropdown-menu {
+    min-width: 4rem;
+    cursor: pointer;
+}

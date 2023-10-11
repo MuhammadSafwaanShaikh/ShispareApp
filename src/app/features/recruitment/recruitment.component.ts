@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { FeaturesService } from 'src/app/services/features.service';
 
 @Component({
   selector: 'app-recruitment',
@@ -9,7 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 export class RecruitmentComponent {
   recruitmentHeading: string[] = []
 
-  constructor(public dataService: DataService) { }
+  constructor(public featuresService: FeaturesService) { }
 
   ngOnInit(): void {
     // Data for the dashboard
@@ -25,9 +26,18 @@ export class RecruitmentComponent {
       'ACTION'
     ];
 
-    this.dataService.employee = [
-      { name: 'Wahaj', country: 'USA', company: 'ABC Inc.' },
-      { name: 'Kazim', country: 'Canada', company: 'XYZ Ltd.' }
+    this.featuresService.data = [
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
     ];
   }
 }

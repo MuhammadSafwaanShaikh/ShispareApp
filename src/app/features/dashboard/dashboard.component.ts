@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { FeaturesService } from 'src/app/services/features.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ export class DashboardComponent {
 
   dashboardTableHeading: string[] = [];
 
-  constructor(public dataService: DataService) { }
+  constructor(public featuresService: FeaturesService) { }
 
   ngOnInit(): void {
     // Data for the dashboard
@@ -26,7 +26,7 @@ export class DashboardComponent {
       'ACTION'
     ];
 
-    this.dataService.employee = [
+    this.featuresService.data = [
       { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
       { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
       { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },

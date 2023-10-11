@@ -1,4 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
+interface City {
+  name: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-grid',
@@ -7,35 +13,38 @@ import { Component, Input } from '@angular/core';
 })
 export class GridComponent {
   @Input() tableHeading: string[] = [];
-  @Input() employee: any[] = [];
-  isDropdownOpen: boolean = false;
-  selectAll: boolean = false;
+  @Input() data: any[] = [];
+
+  checks: boolean = false;
 
   constructor() {
   }
 
-  toggleSelectAll(): void {
-    this.employee.forEach(emp => {
-      emp.checked = this.selectAll;
-    });
-  }
-
-  toggleDropdown(employee: any): void {
-    employee.isDropdownOpen = !employee.isDropdownOpen;
-    this.employee.forEach((emp) => {
-      if (emp !== employee) {
-        emp.isDropdownOpen = false;
-      }
-    });
-  }
-
-  editItem(employee: any): void {
-    console.log('Edit clicked for employee:', employee);
-  }
-  viewItem(employee: any): void {
-    console.log('View clicked for employee:', employee);
-  }
   ngOnInit() {
+
   }
+
+  bulk(e: any) {
+    if (e.target.checked == true) {
+      this.checks = true
+    }
+    else {
+      this.checks = false
+    }
+  }
+
+
+
+  editItem(data: any): void {
+    console.log('Edit clicked for data:', data);
+  }
+  viewItem(data: any): void {
+    console.log('View clicked for data:', data);
+  }
+
+  getDataProperties(data: any): string[] {
+    return Object.keys(data)
+  }
+
 
 }
