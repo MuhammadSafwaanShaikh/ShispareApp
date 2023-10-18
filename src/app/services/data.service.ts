@@ -1,30 +1,131 @@
-import { Injectable } from '@angular/core';
+    import { Injectable } from '@angular/core';
+    import { HttpClient } from '@angular/common/http';
+    import { Observable } from 'rxjs';
+    import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+    import { throwError } from 'rxjs';
+    import { catchError } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class DataService {
-  private dashboardTableHeading: string[] = [];
-  private recruitmentTableHeading:string[]=[];
-  private _employee: any[] = [];
-  private attendanceTableHeading:string[]=[];
 
-  set employee(employee: any[]) {
-    this._employee = employee;
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class DataService {
+      private dashboardTableHeading: string[] = [];
+      private recruitmentTableHeading:string[]=[];
+      private _employee: any[] = [];
+      private attendanceTableHeading:string[]=[];
+      private baseUrl = 'http://13.228.165.0/api';
+      private authToken: string | null;  
+      newDepartment: any = {};
+
+
+      set employee(employee: any[]) {
+        this._employee = employee;
+      }
+      get employee(): any[] {
+        return this._employee
+      }
+      
+      getDashboardTableHeading(): string[] {
+        return this.dashboardTableHeading;
+      }
+      getrecruitmentTableHeading():string[]{
+        return this.recruitmentTableHeading;
+      }
+      getattendanceTableHeading():string[]{
+        return this.attendanceTableHeading
+      }
+
+      constructor(private http: HttpClient) { 
+        this.authToken = localStorage.getItem('token');
+       }
+       private getHeaders() {
+        // Create headers with the authorization token if it's not null
+        const headers = this.authToken
+          ? new HttpHeaders({
+              'Authorization': `Bearer ${this.authToken}`
+            })
+          : new HttpHeaders();
+      
+        return { headers };
+      }
+      // getAttendanceData(): Observable<any[]> {
+      //   const apiUrl = 'https://hub.dummyapis.com/employee?noofRecords=20&idStarts=1001';
+
+      //   return this.http.get<any[]>(apiUrl);
+      // }
+
+        // Login a user
+  // login(email: string, password: string) {
+  //   const url = `${this.baseUrl}/login`;
+  //   return this.http.post(url, { email, password });
+  // }
+  login(email: string, password: string) {
+    const url = `${this.baseUrl}/login`;
+    return this.http.post(url, { email, password });
   }
-  get employee(): any[] {
-    return this._employee
+
+  // Register a new user
+  register( name: string, email: string, password: string) {
+    const url = `${this.baseUrl}/register`;
+    return this.http.post(url, {name, email, password });
+  }
+
+  // Create: Add a new department
+ 
+
+  
+  // Read: Get a list of departments
+  // getDepartments(): Observable<any[]> {
+  //   const headers = this.getHeaders();
+  //   const url = `${this.baseUrl}/departments`;
+  //   return this.http.get<any[]>(url,{headers});
+    
+  // }
+  getDepartments(): Observable<any[]> {
+    // Check if authToken is available before setting the header
+    const headers = this.getHeaders();
+    if (this.authToken) {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.authToken,
+      });
+  
+      return this.http.get<any[]>(`${this.baseUrl}/departments`, { headers });
+    } else {
+      // Handle the case where authToken is not available (e.g., show an error or redirect to the login page).
+      // You should implement your own logic based on your application's requirements.
+      return throwError('Authentication token is missing');
+    }
   }
   
-  getDashboardTableHeading(): string[] {
-    return this.dashboardTableHeading;
-  }
-  getrecruitmentTableHeading():string[]{
-    return this.recruitmentTableHeading;
-  }
-  getattendanceTableHeading():string[]{
-    return this.attendanceTableHeading
+
+  // Read: Get a single department by ID
+  getDepartmentById(id: number): Observable<any> {
+    const url = `${this.baseUrl}/department/${id}`;
+    return this.http.get(url);
   }
 
-  constructor() { }
-}
+    // Update: Update a department by ID
+    updateDepartment(id: number, departmentData: any): Observable<any> {
+      const url = `${this.baseUrl}/department/${id}/update`;
+      return this.http.put(url, departmentData);
+    }
+
+    deleteDepartment(id: number): Observable<any> {
+      const url = `${this.baseUrl}/department/${id}/delete`;
+      return this.http.delete(url);
+    }
+    // createDepartment(departmentData: any): Observable<any> {
+    //   const url = `${this.baseUrl}/departmentstore`;
+    //   return this.http.post(url, departmentData);
+    // }
+    createDepartment(departmentData: any): Observable<any> {
+      const url = `${this.baseUrl}/departmentstore`;
+      const headers = this.getHeaders(); // Get the headers with the authorization token
+    
+      return this.http.post(url, departmentData, headers); // Include the headers in the POST request
+    }
+    
+
+
+    }

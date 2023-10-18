@@ -1,0 +1,26 @@
+<h3>Department</h3>
+<button (click)="showDialog()">Add New</button>
+
+<div class="custom-dialog" [ngClass]="{ 'show-dialog': visible }">
+  <div class="dialog-content">
+    <h2>Add New Department</h2>
+    <form (ngSubmit)="addDepartment()">
+      <label for="department">Department</label>
+      <input type="text" id="department" name="department" [(ngModel)]="newDepartment.department" required>
+      <button type="submit">Add</button>
+    </form>
+    <button (click)="hideDialog()" class="close-button">Close</button>
+  </div>
+</div>
+<app-grid [employee]="DepartmentData" [tableHeading]="attendanceTableHeading"></app-grid>
+
+<!-- <p-dialog header="Add New Department" *ngIf="visible" [style]="{ width: '50vw' }">
+  <form (ngSubmit)="addDepartment()">
+    <label for="department">Department</label>
+    <input type="text" id="department" name="department" [(ngModel)]="newDepartment.department" required>
+
+    <button type="submit" label="Add"></button>
+  </form>
+</p-dialog> -->
+
+

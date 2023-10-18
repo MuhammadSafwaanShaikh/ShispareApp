@@ -1,5 +1,3 @@
-
-
 <ul class="nav nav-pills">
     <li class="nav-item">
         <a class="nav-link">All</a>
@@ -17,44 +15,44 @@
         <a class="nav-link">Workseet</a>
     </li>
 </ul>
-<p-table [value]="employee" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+
+
+
+
+
+<app-spinner></app-spinner>
+
+<p-table [value]="employee" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]"
     class="custom-table">
     <ng-template pTemplate="header">
-
         <tr>
             <th>
-              <input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()">
-              {{ tableHeading[0] }}
+                <input type="checkbox" (change)="bulk($event)" >
+                <!-- {{ tableHeading[0] }} -->
             </th>
             <ng-container *ngFor="let heading of tableHeading; let first = first">
-              <th *ngIf="!first">{{ heading }}</th>
+                <th>{{ heading }}</th>
             </ng-container>
-          </tr>
-      
+        </tr>
     </ng-template>
     <ng-template pTemplate="body" let-employee let-index="index">
-    <ng-template pTemplate="body" let-employee let-index="index">
         <tr>
-
-            <td> <input type="checkbox" [(ngModel)]="employee.checked">{{ employee.id }}</td>
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.country}}</td>
-            <td>{{ employee.company }}</td>
-            <td>{{employee.status}}</td>
-            <td> <i class="bi bi-person-fill" style="margin-left: 25px;"></i></td>
-            <td>{{employee.added}}</td>
-            <!-- <td>{{employee.action}}</td> -->
+            <td> <input type="checkbox" [checked]="checks" ></td>
+            <ng-container *ngFor="let property of getEmployeeProperties(employee)">
+                <td>{{ employee[property] }}</td>
+            </ng-container>
             <td>
                 <div class="dropdown">
-                    <i class="bi bi-three-dots" (click)="toggleDropdown(employee)"></i>
-                    <ul class="dropdown-menu" [ngStyle]="{'display': employee.isDropdownOpen ? 'block' : 'none'}">
-                      <li><a class="dropdown-item" (click)="editItem(employee)">Edit</a></li>
-                      <li><a class="dropdown-item" (click)="viewItem(employee)">View</a></li>
+                    <i class="bi bi-three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    </i>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="editItem(employee)">Edit</a></li>
+                        <li><a class="dropdown-item" (click)="viewItem(employee)">Delete</a></li>
                     </ul>
-                  </div>
-              </td>
+                </div>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">
@@ -64,4 +62,3 @@
         <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
     </ng-template>
 </p-table>
-

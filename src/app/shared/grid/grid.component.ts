@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -8,28 +9,30 @@ import { Component, Input } from '@angular/core';
 export class GridComponent {
   @Input() tableHeading: string[]=[];
   @Input() employee: any[] = [];
+ 
   isDropdownOpen: boolean = false;
-  selectAll: boolean = false;
- 
-  constructor() { 
-  
-  }
+  newDepartment: any = {};
 
-  toggleSelectAll(): void {
-    this.employee.forEach(emp => {
-      emp.checked = this.selectAll;
-    });
+  visible: boolean = false;
+
+  
+  selectAll: boolean = false;
+  checks:boolean=false;
+  bulk(e:any){
+    if(e.target.checked==true){
+      this.checks=true
+    }
+    else{
+      this.checks=false
+
+    }
   }
+  
+
  
-  toggleDropdown(employee: any): void {
-    
-    employee.isDropdownOpen = !employee.isDropdownOpen;
-    this.employee.forEach((emp) => {
-      if (emp !== employee) {
-        emp.isDropdownOpen = false;
-      }
-    });
-  }
+  constructor() { }
+
+ 
 
   editItem(employee: any): void {
     // Implement your edit logic here
@@ -41,31 +44,17 @@ export class GridComponent {
     console.log('View clicked for employee:', employee);
   }
  
+  getEmployeeProperties(employee: any): string[] {
+    // Assuming 'employee' is an object with various properties,
+    // this function returns an array of property names.
+    return Object.keys(employee);
+}
 
-
-
-  toggleSelectAll(): void {
-    this.employee.forEach(emp => {
-      emp.checked = this.selectAll;
-    });
-  }
-
-  toggleDropdown(employee: any): void {
-    employee.isDropdownOpen = !employee.isDropdownOpen;
-    this.employee.forEach((emp) => {
-      if (emp !== employee) {
-        emp.isDropdownOpen = false;
-      }
-    });
-  }
-
-  editItem(employee: any): void {
-    console.log('Edit clicked for employee:', employee);
-  }
-  viewItem(employee: any): void {
-    console.log('View clicked for employee:', employee);
-  }
   ngOnInit() {
   }
+
+
+
+
 
 }

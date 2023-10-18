@@ -5,6 +5,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [HeaderComponent,
@@ -14,7 +16,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   exports: [
     HeaderComponent, SideBarComponent
-  ]
+  ],
 
+ 
 })
 export class CoreModule { }

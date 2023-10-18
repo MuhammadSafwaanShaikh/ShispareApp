@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedComponent } from './shared.component';
 import { DashboardComponent } from '../features/dashboard/dashboard.component';
 import { RecruitmentComponent } from '../features/recruitment/recruitment.component';
+import { DepartmentComponent } from '../features/Department/department.component';
+
 
 const routes: Routes = [
   {
@@ -14,6 +16,8 @@ const routes: Routes = [
       // { path: '', redirectTo: 'attendance', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'recruitment', component: RecruitmentComponent },
+      { path: 'department', component:  DepartmentComponent},
+    
     ],
   },
 ];

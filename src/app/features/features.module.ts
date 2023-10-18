@@ -8,11 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
+// import { AttendanceComponent } from './Department/department.component';
+import { DepartmentComponent } from './Department/department.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [LoginComponent,
     DashboardComponent,
-    RecruitmentComponent
+    RecruitmentComponent,
+    DepartmentComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +25,7 @@ import { AppRoutingModule } from '../app-routing.module';
     AppRoutingModule,
     FormsModule,
     SharedModule,
+    HttpClientModule
   ],
 
 })
