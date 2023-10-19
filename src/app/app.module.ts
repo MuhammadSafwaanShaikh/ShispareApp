@@ -6,14 +6,18 @@ import { RouterModule } from '@angular/router';
 import { FeaturesModule } from './features/features.module';
 import { CoreModule } from './core/core.module';
 import { SharedComponent } from './shared/shared.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+
 @NgModule({
   declarations: [
-    AppComponent, SharedComponent
+    AppComponent, SharedComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
   imports: [
-    BrowserModule, RouterModule, AppRoutingModule, FeaturesModule, CoreModule
+    BrowserModule, RouterModule, AppRoutingModule, FeaturesModule, CoreModule, BrowserAnimationsModule, MatProgressSpinnerModule
   ]
 })
 export class AppModule { }

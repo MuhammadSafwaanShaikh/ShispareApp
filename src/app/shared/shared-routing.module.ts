@@ -5,7 +5,7 @@ import { SharedComponent } from './shared.component';
 import { DashboardComponent } from '../features/dashboard/dashboard.component';
 import { RecruitmentComponent } from '../features/recruitment/recruitment.component';
 import { EmployeeComponent } from '../features/employee/employee.component';
-import { AttendanceComponent } from '../features/attendance/attendance.component';
+import { DepartmentComponent } from '../features/department/department.component';
 import { LeaveComponent } from '../features/leave/leave.component';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'recruitment', component: RecruitmentComponent },
       { path: 'employee', component: EmployeeComponent },
-      { path: 'attendance', component: AttendanceComponent },
+      { path: 'department', component: DepartmentComponent },
       { path: 'leave', component: LeaveComponent },
 
     ],

@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 export class SideBarComponent {
 
+  isSidebarCollapsed = true;
+  activeSubMenu: string | null = null;
 
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+  }
 }

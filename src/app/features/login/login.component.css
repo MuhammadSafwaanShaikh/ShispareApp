@@ -13,3 +13,15 @@
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px white;
 }
+
+.signup {
+    margin-top: -15px;
+    margin-left: 65px;
+}
+
+.signup a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: blue;
+
+}

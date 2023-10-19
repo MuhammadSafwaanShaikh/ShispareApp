@@ -15,7 +15,18 @@
         <a class="nav-link">Worksheet</a>
     </li>
 </ul>
+<app-spinner></app-spinner>
 
+<button class="btn btn-success" (click)="showDialog()"> Add</button>
+<p-dialog header="Add Info" [(visible)]="visible" [style]="{width: '50vw'}">
+    <form [formGroup]="formDepartment" (ngSubmit)="submitForm()">
+       
+        <label class="form-label">Department Name</label>
+        <input formControlName="department" type="name" class="form-control form-control-lg" />
+        <hr>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</p-dialog>
 <p-table [value]="data" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]"
@@ -34,8 +45,10 @@
     <ng-template pTemplate="body" let-data let-index="index">
         <tr>
             <td> <input type="checkbox" [checked]="checks"></td>
-            <ng-container *ngFor="let property of getDataProperties(data)">
-                <td>{{data[property]}} </td>
+            <ng-container>
+                <!-- *ngFor="let property of getDataProperties(data)" -->
+                <td>{{data.id}} </td>
+                <td>{{data.department}} </td>
             </ng-container>
 
             <td>
@@ -43,8 +56,8 @@
                     <i class="bi bi-three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     </i>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" (click)="editItem(data)">Edit</a></li>
-                        <li><a class="dropdown-item" (click)="viewItem(data)">View</a></li>
+                        <li><a class="dropdown-item" (click)="editItem(data.id)">Edit</a></li>
+                        <li><a class="dropdown-item" (click)="deleteItem(data.id)">Delete</a></li>
                     </ul>
                 </div>
             </td>

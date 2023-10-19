@@ -9,9 +9,14 @@ import { TableModule } from 'primeng/table';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from '../interceptors/loader.interceptor';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
-  declarations: [GridComponent],
+  declarations: [GridComponent, SpinnerComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -22,11 +27,17 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    DropdownModule
-
+    DropdownModule,
+    MatProgressSpinnerModule,
+    DialogModule
   ],
   exports: [
     GridComponent
   ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true
+  }]
 })
 export class SharedModule { }

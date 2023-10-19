@@ -53,3 +53,7 @@ th {
     min-width: 4rem;
     cursor: pointer;
 }
+
+.btn-success {
+    margin: 20px 0px 0px 25px
+}

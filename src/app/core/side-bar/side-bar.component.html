@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white" [ngClass]="{'toggled': isSidebarCollapsed}">
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
             <a routerLink="/shared/dashboard" routerLinkActive="active" class="nav-link text-white">
@@ -19,9 +19,9 @@
             </a>
         </li>
         <li>
-            <a routerLink="/shared/attendance" routerLinkActive="active" class="nav-link text-white">
+            <a routerLink="/shared/department" routerLinkActive="active" class="nav-link text-white">
                 <i class="bi bi-download"></i>
-                Attendance
+                Department
             </a>
         </li>
         <li>
