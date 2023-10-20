@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,20 +16,7 @@ export class FeaturesService {
   formData$ = this.formDataSubject.asObservable();
   private authToken: string | null;
 
-
   constructor(private http: HttpClient) { this.authToken = localStorage.getItem('token'); }
-
-  private getHeaders() {
-    // Create headers with the authorization token if it's not null
-    const headers = this.authToken
-      ? new HttpHeaders({
-        'Authorization': `Bearer ${this.authToken}`
-      })
-      : new HttpHeaders();
-
-    return { headers };
-  }
-
 
   set data(data: any[]) {
     this._data = data;
@@ -38,39 +24,7 @@ export class FeaturesService {
   get data(): any[] {
     return this._data
   }
-  // getAttendanceData(): Observable<Department[]> {
-  //   const token = localStorage.getItem('token');
-
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${token}`
-  //   });
-
-  //   return this.http.get<any>(this.departmentsUrl, { headers }).pipe(
-  //     tap(response => {
-  //       console.log('API Response:', response); // Log the API response here
-  //     }),
-  //     catchError(error => {
-  //       console.error('Error:', error);
-
-  //       return of([] as Department[]);
-  //     }),
-  //     map(response => {
-  //       map(response => response as Department[])
-  //     })
-  //   );
-  // }
-
-  getDepartments(): Observable<any[]> {
-    if (this.authToken) {
-      const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.authToken,
-      });
-      return this.http.get<any[]>(this.departmentsUrl, { headers });
-    } else {
-      return throwError('Token is missing');
-    }
-  }
-
+  
   registerUser(userData: any): Observable<any> {
     return this.http.post(this.registerUrl, userData)
   }
@@ -84,19 +38,38 @@ export class FeaturesService {
       })
     );
   }
-
-  addDepartmentData(departData: any): Observable<any> {
+  getDepartments(): Observable<any[]> {
     if (this.authToken) {
       const headers = new HttpHeaders({
         'Authorization': 'Bearer ' + this.authToken,
       });
-      
+      return this.http.get<any[]>(this.departmentsUrl, { headers });
+    } else {
+      return throwError('Token is missing');
+    }
+  }
+
+
+addDepartmentData(departData: any): Observable<any> {
+    if (this.authToken) {
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.authToken,
+      });
     return this.http.post(this.departmentStoreUrl, departData,{headers})
     }
     else {
-      return throwError('Token is missing');
- 
+      return throwError('Token is missing'); 
   }
+}
+
+updateDepartmentData(id: number|null,data:any): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  
+  const updateUrl = `${this.departmentdeleteUrl}/${id}/update`;
+  return this.http.put(updateUrl,data,{headers})
 }
 
 
@@ -105,12 +78,11 @@ deleteDepartment(id:number): Observable<any>{
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
-  
   const deleteUrl = `${this.departmentdeleteUrl}/${id}/delete`;
   return this.http.delete(deleteUrl, { headers }).pipe(
     catchError(error => {
       console.error('Error deleting department:', error);
-      throw error; // re-throw the error for the component to handle
+      throw error;
     })
   );;
 }

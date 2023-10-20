@@ -1,27 +1,27 @@
+
 import { Component } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
 import { FeaturesService } from 'src/app/services/features.service';
 
 @Component({
-  selector: 'app-recruitment',
-  templateUrl: './recruitment.component.html',
-  styleUrls: ['./recruitment.component.css']
+  selector: 'app-designation',
+  templateUrl: './designation.component.html',
+  styleUrls: ['./designation.component.css']
 })
-export class RecruitmentComponent {
-  recruitmentHeading: string[] = []
+export class DesignationComponent {
+
+  dashboardTableHeading: string[] = [];
 
   constructor(public featuresService: FeaturesService) { }
 
   ngOnInit(): void {
     // Data for the dashboard
-
-    this.recruitmentHeading = [
-      'AMOUNT',
-      'FEES',
-      'SCHOOL NAME',
-      'CLASS',
-      'ITEM',
+    this.dashboardTableHeading = [
+      'EMPLOYEE #',
+      'EMPLOYEE',
+      'ATTENDANCE DATE',
+      'CHANGE TYPE',
       'STATUS',
+      'APPROVALS',
       'ADDONS',
       'ACTION'
     ];

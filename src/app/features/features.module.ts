@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DesignationComponent } from './designation/designation.component';
 import { LoginComponent } from './login/login.component';
-import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { ProjectComponent } from './project/project.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,8 +16,8 @@ import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [LoginComponent,
-    DashboardComponent,
-    RecruitmentComponent,
+    DesignationComponent,
+    ProjectComponent,
     EmployeeComponent,
     DepartmentComponent,
     LeaveComponent
