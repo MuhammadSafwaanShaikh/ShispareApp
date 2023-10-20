@@ -4,6 +4,7 @@
     import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
     import { throwError } from 'rxjs';
     import { catchError } from 'rxjs/operators';
+    import { map } from 'rxjs/operators';
 
 
     @Injectable({
@@ -106,26 +107,97 @@
   }
 
     // Update: Update a department by ID
+    // updateDepartment(id: number, departmentData: any): Observable<any> {
+    //   const url = `${this.baseUrl}/department/${id}/update`;
+    //   return this.http.put(url, departmentData);
+    // }
+
+    // deleteDepartment(id: number): Observable<any> {
+    //   const url = `${this.baseUrl}/department/${id}/delete`;
+    //   return this.http.delete(url);
+    // }
+    deleteDepartment(id: number): Observable<any> {
+      const url = `${this.baseUrl}/department/${id}/delete`;
+      const headers = this.getHeaders();
+      return this.http.delete(url,headers)
+        .pipe(
+          catchError((error: any) => {
+            console.error('Error deleting department:', error);
+            // Handle the error here, e.g., display an error message to the user
+            return throwError(error);
+          })
+        );
+    }
+    
+    // createDepartment(departmentData: any): Observable<any> {
+      
+    //   const url = `${this.baseUrl}/departmentstore`;
+    //   console.log(url);
+    //   return this.http.post(url, departmentData);
+    // }
+    createDepartment(departmentData: any): Observable<any> {
+      const url = `${this.baseUrl}/departmentstore`;
+    
+      // Assuming departmentData is an object containing department information
+      const headers = this.getHeaders(); // If you need to include authorization headers
+    
+      return this.http.post(url, departmentData,  headers ).pipe(
+        map((response: any) => {
+          // Handle the response as needed
+          // Assuming the API returns the newly created department data
+          // You can also perform any additional processing here
+          this.employee.push(response);
+          return response;
+        }),
+        catchError((error: any) => {
+          // Handle errors here
+          console.error('Error creating department:', error);
+          return throwError(error);
+        })
+      );
+    }
+    
+    // postToApi(departmentData: any): Observable<any> {
+    //   const url = `${this.baseUrl}/departmentstore`;
+    //   const headers = this.getHeaders(); // Get the headers with the authorization token
+    
+    //   return this.http.post(url, departmentData, headers); // Include the headers in the POST request
+    // }
+
     updateDepartment(id: number, departmentData: any): Observable<any> {
       const url = `${this.baseUrl}/department/${id}/update`;
       return this.http.put(url, departmentData);
     }
 
-    deleteDepartment(id: number): Observable<any> {
-      const url = `${this.baseUrl}/department/${id}/delete`;
-      return this.http.delete(url);
-    }
-    // createDepartment(departmentData: any): Observable<any> {
-    //   const url = `${this.baseUrl}/departmentstore`;
-    //   return this.http.post(url, departmentData);
+    // postToApi(url: string, data: any): Observable<any> {
+    //   return this.http.post(url, data);
     // }
-    createDepartment(departmentData: any): Observable<any> {
-      const url = `${this.baseUrl}/departmentstore`;
-      const headers = this.getHeaders(); // Get the headers with the authorization token
-    
-      return this.http.post(url, departmentData, headers); // Include the headers in the POST request
-    }
     
 
+    //PROJECT COMPONENT APIS
 
+    getProjects(): Observable<any[]> {
+      const url = `${this.baseUrl}/projects`;
+      const headers = this.getHeaders();
+  
+      return this.http.get<any[]>(url, headers).pipe(
+        map((response: any) => {
+          // Handle the response as needed
+          // You can add any additional processing here
+          return response;
+        }),
+        catchError((error: any) => {
+          // Handle errors here
+          console.error('Error loading projects:', error);
+          return throwError(error);
+        })
+      );
     }
+    
+  
+
+    
+  }
+
+
+    

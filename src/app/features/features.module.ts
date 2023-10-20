@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { RecruitmentComponent } from './recruitment/recruitment.component';
+import { ProjectComponent } from './project/project.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [LoginComponent,
     DashboardComponent,
-    RecruitmentComponent,
+    ProjectComponent,
     DepartmentComponent
   ],
   imports: [

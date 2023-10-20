@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedComponent } from './shared.component';
 import { DashboardComponent } from '../features/dashboard/dashboard.component';
-import { RecruitmentComponent } from '../features/recruitment/recruitment.component';
+import { ProjectComponent } from '../features/project/project.component';
 import { DepartmentComponent } from '../features/Department/department.component';
 
 
@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       // { path: '', redirectTo: 'attendance', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'recruitment', component: RecruitmentComponent },
+      { path: 'project', component: ProjectComponent },
       { path: 'department', component:  DepartmentComponent},
     
     ],

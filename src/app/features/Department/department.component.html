@@ -1,17 +1,26 @@
 <h3>Department</h3>
-<button (click)="showDialog()">Add New</button>
+<!-- <button (click)="showDialog()">Add New</button> -->
+<!-- <button class="btn btn-primary" (click)="showDialog()" type="submit">Add New</button>
 
 <div class="custom-dialog" [ngClass]="{ 'show-dialog': visible }">
-  <div class="dialog-content">
-    <h2>Add New Department</h2>
-    <form (ngSubmit)="addDepartment()">
+  <div class="dialog-content"> -->
+    <!-- <h2>Add New Department</h2> -->
+    <!-- <form (ngSubmit)="addDepartment()">
       <label for="department">Department</label>
       <input type="text" id="department" name="department" [(ngModel)]="newDepartment.department" required>
       <button type="submit">Add</button>
+    </form> -->
+    <!-- <form (ngSubmit)="addDepartment()">
+      <div class="form-group">
+        <label for="exampleInputEmail1" style="margin-left: 0px;">Department Name</label> 
+        <input type="email" class="form-control" id="department" name="department" [(ngModel)]="newDepartment.department" aria-describedby="emailHelp" placeholder="Enter department">
+           
+      </div>    
+      <button type="submit" (click)="hideDialog()" class="btn btn-primary">Submit</button>
     </form>
-    <button (click)="hideDialog()" class="close-button">Close</button>
+   
   </div>
-</div>
+</div> -->
 <app-grid [employee]="DepartmentData" [tableHeading]="attendanceTableHeading"></app-grid>
 
 <!-- <p-dialog header="Add New Department" *ngIf="visible" [style]="{ width: '50vw' }">

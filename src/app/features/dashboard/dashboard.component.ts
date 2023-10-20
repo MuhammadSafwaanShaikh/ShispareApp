@@ -26,18 +26,18 @@ export class DashboardComponent {
       'ACTION'
     ];
 
-    this.dataService.employee = [
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-      { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
-    ];
+    // this.dataService.employee = [
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    //   { id: 101, name: 'Waqas Ali', country: '15-sep-23', company: 'New Request', status: 'Approved', added: '16-Sep-23 10:15' },
+    // ];
   }
 }
