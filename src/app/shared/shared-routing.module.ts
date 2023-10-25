@@ -6,6 +6,7 @@ import { SharedComponent } from './shared.component';
 import { DashboardComponent } from '../features/dashboard/dashboard.component';
 import { ProjectComponent } from '../features/project/project.component';
 import { DepartmentComponent } from '../features/Department/department.component';
+import { DesignationComponent } from '../features/designation/designation.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'project', component: ProjectComponent },
       { path: 'department', component:  DepartmentComponent},
+      {path:'designation',component:DesignationComponent}
     
     ],
   },

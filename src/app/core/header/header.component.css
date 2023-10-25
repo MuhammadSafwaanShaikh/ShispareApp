@@ -1,8 +1,23 @@
-.navbar {
+/* .navbar {
+    left: 0;
     font-size: 20px;
     border-bottom: 2px solid rgb(231, 231, 231);
-    height: 100px;
-}
+    height: 10vh;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index: 99;
+  } */
+  .navbar {
+    left: 0;
+    font-size: 20px;
+    border-bottom: 2px solid rgb(231, 231, 231);
+    height: 4.5rem;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index: 99;
+  }
 
 .nav-item {
     list-style: none;

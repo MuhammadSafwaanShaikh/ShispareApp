@@ -1,110 +1,144 @@
 <ul class="nav nav-pills">
-    <li class="nav-item">
-        <a class="nav-link">All</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Attendance</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Exemption</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Shift</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Workseet</a>
-    </li>
+  <li class="nav-item">
+    <a class="nav-link">All</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Attendance</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Exemption</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Shift</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Workseet</a>
+  </li>
 </ul>
 
-<!-- <button (click)="openAddNewForm(currentComponentType)">Add New</button>
-<div *ngIf="isAddFormOpen">
-  <h3>Add New {{ addFormType }}</h3>
-  <form (submit)="saveFormData()">
-    <ng-container *ngFor="let field of addFormFields">
-       
-      <label>{{ field.label }}</label>
-      <input [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]" [required]="field.required">
-    </ng-container>
-    <button type="submit">Save</button>
-  </form>
-</div> -->
+<p-button [style]="{ 'border-radius': '5px', 'background-color': '#007bff', 'color': '#fff', 'margin':'17px 22px','margin-bottom':'-3px'}"
+  (click)="currentComponentType ? openAddNewForm(currentComponentType) : ''">Add New {{ currentComponentType
+  }}</p-button>
 
-<button (click)="currentComponentType ? openAddNewForm(currentComponentType) : ''">Add New {{ currentComponentType }}</button>
-
-<!-- Display the dynamic form when it is open -->
-<!-- <div *ngIf="isAddFormOpen">
-  <h3>Add New {{ addFormType }}</h3>
-  <form (submit)="saveFormData()">
-    <ng-container *ngFor="let field of addFormFields">
-      <label>{{ field.label }}</label>
-      <input [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]" [required]="field.required">
-    </ng-container>
-    <button type="submit">Save</button>
-  </form>
-</div> -->
-<p-dialog header="Add New {{ addFormType }}" [(visible)]="isAddFormOpen" [responsive]="true">
-    <ng-container *ngIf="isAddFormOpen">
-      <form (ngSubmit)="saveFormData()">
-        <ng-container *ngFor="let field of addFormFields">
-          <div class="ui-g">
-            <div class="ui-g-12">
-              <label>{{ field.label }}</label>
-              <input [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]" [required]="field.required">
-            </div>
+<!-- <p-dialog header="Add New {{ addFormType }}" [(visible)]="isAddFormOpen" [responsive]="true">
+  <ng-container *ngIf="isAddFormOpen">
+    <form (ngSubmit)="saveFormData()">
+      <ng-container *ngFor="let field of addFormFields">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <label>{{ field.label }}</label>
+            <input [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]"
+              [required]="field.required">
           </div>
-        </ng-container>
-        <button type="submit">Save</button>
-      </form>
-    </ng-container>
-  </p-dialog>
-  
-  
+        </div>
+      </ng-container>
+     
+      <button type="submit" pButton pRipple (click)="showSuccess()" label="Save" class="p-button-success mb-2"></button>
+      
+    </form>
+  </ng-container>
+</p-dialog> -->
+<p-dialog header="Add New {{ addFormType }}" [(visible)]="isAddFormOpen" [responsive]="true">
+  <ng-container *ngIf="isAddFormOpen">
+    <form (ngSubmit)="saveFormData()" class="add-form">
+      <ng-container *ngFor="let field of addFormFields">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <label class="form-label">{{ field.label }}</label>
+            <input class="form-input" [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]"
+              [required]="field.required">
+          </div>
+        </div>
+      </ng-container>
 
+      <button type="submit" pButton pRipple (click)="showSuccess()" label="Save" class="p-button-success mb-2" style="margin-top: 39px;
+      margin-left: 2px;
+      width: 95px;"></button>
+    </form>
+  </ng-container>
+</p-dialog>
+
+
+<p-toast></p-toast>
 
 
 <app-spinner></app-spinner>
 
 <p-table [value]="employee" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]"
-    class="custom-table">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>
-                <input type="checkbox" (change)="bulk($event)" >
-                <!-- {{ tableHeading[0] }} -->
-            </th>
-            <ng-container *ngFor="let heading of tableHeading; let first = first">
-                <th>{{ heading }}</th>
-            </ng-container>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-employee let-index="index">
-        <tr>
-            <td> <input type="checkbox" [checked]="checks" ></td>
-            <ng-container *ngFor="let property of getEmployeeProperties(employee)">
-                <td>{{ employee[property] }}</td>
-            </ng-container>
-            <td>
-                <div class="dropdown">
-                    <i class="bi bi-three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    </i>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" (click)="editItem(employee)">Edit</a>     
-                        </li>
-                        <li>
-                            <a class="dropdown-item" (click)="deleteItem(employee)">Delete</a>
-                        </li>
-                    </ul>
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]"
+  class="custom-table">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <input type="checkbox" (change)="bulk($event)">
+      </th>
+      <ng-container *ngFor="let heading of tableHeading; let first = first">
+        <th>{{ heading }}</th>
+      </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-employee let-index="index">
+    <tr>
+      <td> <input type="checkbox" [checked]="checks"></td>
+      <ng-container *ngFor="let property of getEmployeeProperties(employee)">
+        <td>{{ employee[property] }}</td>
+      </ng-container>
+      <td>
+        <!-- Edit form -->
+        <!-- <p-dialog header="Edit {{ addFormType }}" [(visible)]="isEditFormOpen" [responsive]="true">
+          <ng-container *ngIf="isEditFormOpen">
+            <form (ngSubmit)="updateData()">
+              <ng-container *ngFor="let field of editFormFields">
+                <div class="ui-g">
+                  <div class="ui-g-12">
+                    <label>{{ field.label }}</label>
+                    <input [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]"
+                      [required]="field.required">
+                  </div>
                 </div>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="paginatorleft">
-        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-    </ng-template>
-    <ng-template pTemplate="paginatorright">
-        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-    </ng-template>
+              </ng-container>
+              <button type="submit">Update</button>
+            </form>
+          </ng-container>
+        </p-dialog> -->
+        <p-dialog header="Edit {{ addFormType }}" [(visible)]="isEditFormOpen" [responsive]="true" [style]="{'width': '450px','height':'250px'}">
+          <ng-container *ngIf="isEditFormOpen">
+            <form (ngSubmit)="updateData()">
+              <ng-container *ngFor="let field of editFormFields">
+                <div class="ui-g form-field">
+                  <div class="ui-g-12">
+                    <label class="form-label">{{ field.label }}</label>
+                    <input class="form-input" [type]="field.type" [name]="field.name" [(ngModel)]="formData[field.name]"
+                      [required]="field.required">
+                  </div>
+                </div>
+              </ng-container>
+              <button type="submit" class="form-button p-button p-button-success">Update</button>
+            </form>
+          </ng-container>
+        </p-dialog>
+        
+        <div class="dropdown">
+          <i class="bi bi-three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          </i>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" (click)="editItem(employee)" style="cursor: pointer">Edit</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="deleteItem(employee)" style="cursor: pointer">Delete</a>
+              <!-- <button type="button" pButton pRipple (click)="showConfirm(employee)" label="Delete" class="ui-button-warning"></button> -->
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+  </ng-template>
+  <ng-template pTemplate="paginatorright">
+    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+  </ng-template>
 </p-table>

@@ -13,6 +13,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { DialogModule } from 'primeng/dialog';
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    DialogModule
+    DialogModule,
+    ToastModule,
+    ConfirmDialogModule
   ],
 
   exports: [
@@ -40,7 +45,8 @@ import { DialogModule } from 'primeng/dialog';
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
       multi: true
-    }
+    },
+    MessageService
   ]
 })
 export class SharedModule { }

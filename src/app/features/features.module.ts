@@ -11,12 +11,14 @@ import { AppRoutingModule } from '../app-routing.module';
 // import { AttendanceComponent } from './Department/department.component';
 import { DepartmentComponent } from './Department/department.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DesignationComponent } from './designation/designation.component';
 
 @NgModule({
   declarations: [LoginComponent,
     DashboardComponent,
     ProjectComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    DesignationComponent
   ],
   imports: [
     CommonModule,

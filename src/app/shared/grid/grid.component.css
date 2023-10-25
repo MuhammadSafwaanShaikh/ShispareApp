@@ -123,5 +123,128 @@ th {
   .modal button:hover {
     background-color: #0056b3;
   }
+  /* CSS for your form */
+.add-form {
+  padding: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* Additional styling for the Save button */
+.p-button-success {
+  background-color: rgb(0, 123, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.p-button-success:hover {
+  background-color: #3048e6;
+}
+/* :host ::ng-deep .p-paginator .p-paginator-current {
+  background-color: transparent;
+  border: none;
+  color: #6C757D;
+  min-width: 3rem;
+  height: 3rem;
+  margin: auto 0 auto -26rem;
   
+  padding: 0 0.5rem;
+  font-size: 14px;
+} */
+
+/* :host ::ng-deep .p-paginator .p-paginator-last {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  /* margin-left: 50px; */
+  /* margin-right: 20px;  */
+
+/* :host ::ng-deep .p-paginator-last{
+  margin-left: 20px;
+  
+} */
+ /* :host ::ng-deep .p-paginator .p-dropdown {
+  margin-left: -1.5rem;
+  margin-right: 0.5rem;
+  height: 3rem;
+  margin-left: 14px;
+} */
+/* Define a class for the form fields to add some spacing */
+.form-field {
+  margin-bottom: 1rem;
+}
+
+/* Style the form labels */
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  color: #333; /* Adjust the color to your preference */
+}
+
+/* Style the form input fields */
+.form-input {
+  width: 100%; /* Expand the input to fill the container */
+  padding: 0.5rem;
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px;
+}
+
+/* Style the form button */
+.form-button {
+  margin-top: 1rem;
+}
+
+/* Customize the PrimeNG button */
+.p-button-success {
+  background-color: rgb(0, 123, 255);; /* Green color, you can adjust this */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+
+
+::ng-deep .p-paginator .p-dropdown {
+  margin-left: 15rem;
+  margin-right: -6rem;
+  height: 3 rem;
+
+  /* margin-left: 346px; */
+}
+/*::ng-deep .p-paginator-current.ng-star-inserted {
+   margin-left:-4.45rem  */
+
+  /* padding-left:10px; 
+}*/
+::ng-deep .p-paginator .p-paginator-current {
+  background-color: transparent;
+    border: 0 none;
+    color: #6c757d;
+    min-width: 3rem;
+    height: 3rem;
+    /* margin: -0.857rem; */
+    margin-left:-13rem;
+    padding: 0 6.5rem;
+}
+
+
+
+
+
+
   

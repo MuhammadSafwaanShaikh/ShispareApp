@@ -1,7 +1,22 @@
-.col-md-2 {
-    background-color: #00123e;
-}
-
-.col-md-12 {
-    height: 100px;
-}
+/* .col-md-2 {
+    height: 100%;
+  }
+  .col-md-12 {
+    height: 3.8rem;
+  }
+  .col-md-10 {
+    height: calc(100vh - 4.6rem);
+    overflow-y: scroll;
+  } */
+  .col-md-2 {
+    height: 100%;
+  }
+  /* .col-md-12 {
+    height: 4.6rem;
+  } */
+  .col-md-10 {
+    height: calc(90vh - 1rem);
+    overflow-y: scroll;
+    margin-top: 65px;
+  }
+  

@@ -1,4 +1,8 @@
 /* Styles for the custom dialog container */
+h3 {
+  margin: 25px;
+  font-weight: bold;
+}
 .custom-dialog {
     display: none;
     position: fixed;
