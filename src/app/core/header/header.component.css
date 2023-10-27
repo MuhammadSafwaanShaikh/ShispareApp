@@ -1,31 +1,36 @@
 .navbar {
-    font-size: 20px;
-    border-bottom: 2px solid rgb(231, 231, 231);
-    height: 100px;
+  left: 0;
+  font-size: 20px;
+  border-bottom: 2px solid rgb(231, 231, 231);
+  height: 4.5rem;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  z-index: 99;
 }
 
 .nav-item {
-    list-style: none;
-    margin-left: 15px;
+  list-style: none;
+  margin-left: 15px;
 }
 
 .bi-search,
 .bi-bell {
-    color: rgb(73, 125, 255);
-    background-color: rgb(233, 239, 255);
-    padding: 13px 15px 13px 15px;
-    border-radius: 100%;
-    font-size: 14px;
-    font-weight: bolder;
+  color: rgb(73, 125, 255);
+  background-color: rgb(233, 239, 255);
+  padding: 13px 15px 13px 15px;
+  border-radius: 100%;
+  font-size: 14px;
+  font-weight: bolder;
 }
 
 .bi-chevron-down {
-    font-size: 15px;
-    padding-left: 8px;
-    color: gray;
+  font-size: 15px;
+  padding-left: 8px;
+  color: gray;
 }
 
 p {
-    padding-left: 16px;
-    font-weight: 500;
+  padding-left: 16px;
+  font-weight: 500;
 }

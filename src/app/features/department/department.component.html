@@ -1,3 +1,11 @@
 <h3>Department</h3>
-<app-grid [tableHeading]="departmentTableHeading" [data]="departData" [formDepartment]="departmentData">
+<app-grid
+  [tableHeading]="departmentTableHeading"
+  [data]="departData"
+  [formGroup]="departmentForm"
+  controlName="department"
+  (submitFormEvent)="submitDepartmentForm()"
+  [formGroup]="updateDepartmentForm"
+  (submitEditFormEvent)="submitEditDepartmentForm()"
+>
 </app-grid>

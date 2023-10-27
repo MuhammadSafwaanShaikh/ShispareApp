@@ -1,102 +1,122 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Department } from 'src/app/interface/department';
-import { FeaturesService } from 'src/app/services/features.service';
-import { LoaderService } from 'src/app/services/loader.service';
-import { Location } from '@angular/common';
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css'],
-
+  providers: [MessageService],
 })
 export class GridComponent {
   @Input() tableHeading: string[] = [];
   @Input() data: any[] = [];
-  @Input() formDepartment!: FormGroup
-  @Input() updateDepartmentForm!:FormGroup
-  selectedDepartmentId: number | null = null;
-  
+  @Input() dataFromUserProj: any[] = [];
+  @Input() dataFromUserDepart: any[] = [];
+  @Input() dataFromUserDesig: any[] = [];
+  @Input() form!: FormGroup;
+  @Input() updateForm!: FormGroup;
+  @Input() controlName: string = '';
+  selectedId: any;
+  @Output() submitFormEvent = new EventEmitter();
+  @Output() submitEditFormEvent = new EventEmitter();
+  selectedCountry: string | undefined;
   visible: boolean = false;
   visibleEdit: boolean = false;
   checks: boolean = false;
 
-  constructor( private featuresService: FeaturesService,private fb:FormBuilder) {
-    this.updateDepartmentForm = this.fb.group({
-      id: [null],
-      department: '',
-      
-    });
+  constructor(
+    private formService: FormService,
+    private messageService: MessageService
+  ) {
+    this.form = formService.getForm();
+    this.updateForm = formService.getUpdateForm();
   }
+
+  // cities: City[] | undefined;
+  // formssGroup!: FormGroup;
 
   ngOnInit() {
-    this.featuresService.getDepartments().subscribe(data => {
-         this.updateDepartmentForm.patchValue(data);
-       });
+    // this.cities = [
+    //   { name: 'New York', code: 'NY' },
+    //   { name: 'Rome', code: 'RM' },
+    //   { name: 'London', code: 'LDN' },
+    //   { name: 'Istanbul', code: 'IST' },
+    //   { name: 'Paris', code: 'PRS' },
+    // ];
+    // this.formssGroup = new FormGroup({
+    //   selectedCity: new FormControl<City | null>(null),
+    // });
   }
 
-submitEditForm(id:any) {
-    if (this.updateDepartmentForm.valid) {
-      const formData = this.updateDepartmentForm.value;
-      this.featuresService.updateDepartmentData(this.selectedDepartmentId,formData).subscribe(response => {
-        console.log('Data updated successfully', response);
-        window.location.reload();
-      });
-    } 
-    this.selectedDepartmentId = null;
+  onSubmit() {
+    this.submitFormEvent.emit(this.form.value);
+    this.visible = false;
   }
 
-
-  submitForm() {
-    if (this.formDepartment.valid) {
-      const formData = this.formDepartment.value;
-      this.featuresService.setFormData(formData);
-    }
+  submitEditForm(id: any) {
+    this.submitEditFormEvent.emit(this.updateForm.value);
+    this.visibleEdit = false;
   }
 
   bulk(e: any) {
     if (e.target.checked == true) {
-      this.checks = true
-    }
-    else {
-      this.checks = false
+      this.checks = true;
+    } else {
+      this.checks = false;
     }
   }
 
-  editItem(data: any): void {
-    console.log('Edit clicked for data:', data);
-  }
-
-  deleteItem(id: number): void {
-    console.log('Deleting department with ID:', id);
-      this.featuresService.deleteDepartment(id).subscribe(
-        response => {
-          console.log('Department deleted successfully:', response);
-          window.location.reload();
-        },
-        error => {
-          console.error('Error deleting department:', error);
-          // Handle the error, e.g., show an error message to the user
-        }
-      );
+  deleteItem(id: number) {
+    this.formService.deleteItem(id);
+    this.visible = false;
   }
 
   getDataProperties(data: any): string[] {
-    return Object.keys(data)
+    return Object.keys(data);
   }
 
-  showDialog() {  
+  showDialog() {
     this.visible = true;
   }
 
-  showDialogEdit(data:any) {
-    this.selectedDepartmentId = data.id;
-    this.updateDepartmentForm.patchValue({
+  showDialogEdit(data: any) {
+    this.selectedId = data.id;
+    this.updateForm.patchValue({
       department: data.department,
-      // ... patch other form controls if needed
+    });
+    this.updateForm.patchValue({
+      project: data.project,
+    });
+    this.updateForm.patchValue({
+      designation: data.designation,
     });
     this.visibleEdit = true;
+    this.formService.setSelectedId(this.selectedId);
+  }
+
+  //*ToastService
+
+  show() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Added Successfully',
+    });
+  }
+  showInfo() {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Updated',
+      detail: 'Updated Successfully',
+    });
+  }
+  showDelete() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Deleted Successfully',
+    });
   }
 }

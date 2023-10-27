@@ -1,2 +1,10 @@
-<h3>Dashboard</h3>
-<app-grid [data]="featuresService.data" [tableHeading]="dashboardTableHeading"></app-grid>
+<h3>Designation</h3>
+<app-grid
+  [tableHeading]="designationTableHeading"
+  [data]="desigData"
+  [formGroup]="designationForm"
+  controlName="designation"
+  (submitFormEvent)="submitDesignationForm()"
+  [formGroup]="updateDesignationForm"
+  (submitEditFormEvent)="submitEditDesignationForm()"
+></app-grid>

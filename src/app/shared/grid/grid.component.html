@@ -1,80 +1,299 @@
 <ul class="nav nav-pills">
-    <li class="nav-item">
-        <a class="nav-link">All</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Attendance</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Exemption</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Shift</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link">Worksheet</a>
-    </li>
+  <li class="nav-item">
+    <a class="nav-link">All</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Attendance</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Exemption</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Shift</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link">Worksheet</a>
+  </li>
 </ul>
 <app-spinner></app-spinner>
 
-                                    <!-- ADD FORM -->
+<!-- *ADD FORM -->
 
-<button class="btn btn-success" (click)="showDialog()">Add</button>
-<p-dialog header="Add Info" [(visible)]="visible" [style]="{width: '50vw'}">
-    <form [formGroup]="formDepartment" (ngSubmit)="submitForm()">
-       
-        <label class="form-label">Department Name</label>
-        <input formControlName="department" type="name" class="form-control form-control-lg" />
-        <hr>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<button class="btn btn-success" (click)="showDialog()">+ Add Request</button>
+<p-dialog
+  header="Add Info"
+  [(visible)]="visible"
+  [style]="{ width: '60vw', height: '63vh' }"
+>
+  <hr />
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="controlName === 'department'">
+      <label class="form-label">Department Name</label>
+      <input
+        formControlName="department"
+        type="name"
+        class="form-control form-control-lg"
+      />
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="show()"
+      >
+        Submit
+      </button>
+    </div>
+
+    <div *ngIf="controlName === 'project'">
+      <label class="form-label">Project Name</label>
+      <input
+        formControlName="project"
+        type="name"
+        class="form-control form-control-lg"
+      />
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="show()"
+      >
+        Submit
+      </button>
+    </div>
+
+    <div *ngIf="controlName === 'designation'">
+      <label class="form-label">Designation Name</label>
+      <input
+        formControlName="designation"
+        type="name"
+        class="form-control form-control-lg"
+      />
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="show()"
+      >
+        Submit
+      </button>
+    </div>
+
+    <div class="userForm" *ngIf="controlName === 'user'">
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Firstname</label>
+          <input type="name" class="form-control form-control-md" />
+        </div>
+        <div class="col">
+          <label class="form-label">Lastname</label>
+          <input type="name" class="form-control form-control-md" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Select Project</label>
+          <form>
+            <p-dropdown
+              filterBy="project"
+              [showClear]="true"
+              [filter]="true"
+              placeholder="Select a Project"
+              class="user-dropdown"
+              [options]="dataFromUserProj"
+              optionLabel="project"
+            >
+            </p-dropdown>
+          </form>
+        </div>
+
+        <div class="col">
+          <label class="form-label">Select Department</label>
+          <form [formGroup]="form">
+            <p-dropdown
+              filterBy="department"
+              [showClear]="true"
+              [filter]="true"
+              placeholder="Select a Department"
+              class="user-dropdown"
+              formControlName="department"
+              [options]="dataFromUserDepart"
+              optionLabel="department"
+            ></p-dropdown>
+          </form>
+        </div>
+        <div class="col">
+          <label class="form-label">Select Designation</label>
+          <form [formGroup]="form">
+            <p-dropdown
+              filterBy="designation"
+              [showClear]="true"
+              [filter]="true"
+              placeholder="Select a Designation"
+              class="user-dropdown"
+              formControlName="designation"
+              [options]="dataFromUserDesig"
+              optionLabel="designation"
+            ></p-dropdown>
+          </form>
+        </div>
+        <div class="col">
+          <label class="form-label">Select Line Manager</label>
+          <form [formGroup]="form">
+            <p-dropdown
+              filterBy="designation"
+              [showClear]="true"
+              [filter]="true"
+              placeholder="Select a Line Manager"
+              class="user-dropdown"
+              formControlName="designation"
+              [options]="dataFromUserDesig"
+              optionLabel="designation"
+            ></p-dropdown>
+          </form>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="show()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
 </p-dialog>
 
-                                    <!-- EDIT FORM -->
+<!-- *EDIT FORM -->
 
-<p-dialog header="Edit Info" [(visible)]="visibleEdit" [style]="{width: '50vw'}">
-    <form [formGroup]="updateDepartmentForm" (ngSubmit)="submitEditForm(selectedDepartmentId)">  
-        <label class="form-label">Department Name</label>
-        <input formControlName="department" type="name"   class="form-control form-control-lg" />
-        <hr>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<p-dialog
+  header="Edit Info"
+  [(visible)]="visibleEdit"
+  [style]="{ width: '40vw' }"
+>
+  <form [formGroup]="updateForm" (ngSubmit)="submitEditForm(selectedId)">
+    <div *ngIf="controlName === 'department'">
+      <label class="form-label">Department Name</label>
+      <input
+        formControlName="department"
+        type="name"
+        class="form-control form-control-lg"
+      />
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="showInfo()"
+      >
+        Save
+      </button>
+    </div>
+
+    <div *ngIf="controlName === 'project'">
+      <label class="form-label">Project Name</label>
+      <input
+        formControlName="project"
+        type="name"
+        class="form-control form-control-lg"
+      />
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="showInfo()"
+      >
+        Save
+      </button>
+    </div>
+
+    <div *ngIf="controlName === 'designation'">
+      <label class="form-label">Designation Name</label>
+      <input
+        formControlName="designation"
+        type="name"
+        class="form-control form-control-lg"
+      />
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary"
+        pButton
+        pRipple
+        (click)="showInfo()"
+      >
+        Save
+      </button>
+    </div>
+  </form>
 </p-dialog>
 
-<p-table [value]="data" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10, 25, 50]"
-    class="custom-table">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>
-                <input type="checkbox" (change)="bulk($event)">
-            </th>
-            <ng-container *ngFor="let heading of tableHeading; let first = first">
-                <th>{{ heading }}</th>
-            </ng-container>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-data let-index="index">
-        <tr>
-            <td> <input type="checkbox" [checked]="checks"></td>
-            <ng-container *ngFor="let property of getDataProperties(data)">
-               
-                <td>{{data[property]}} </td>
-                
-            </ng-container>
-            <td>
-                <div class="dropdown">
-                    <i class="bi bi-three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    </i>
-                    <ul class="dropdown-menu">
-                        <!-- <li><a class="dropdown-item" (click)="editItem(data.id)">Edit</a></li> -->
-                        <li><a class="dropdown-item" (click)="showDialogEdit(data)">Edit</a></li>
-                        <li><a class="dropdown-item" (click)="deleteItem(data.id)">Delete</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-
-    </ng-template>
+<p-table
+  [value]="data"
+  [paginator]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  class="custom-table"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <input type="checkbox" (change)="bulk($event)" />
+      </th>
+      <ng-container *ngFor="let heading of tableHeading; let first = first">
+        <th>{{ heading }}</th>
+      </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data let-index="index">
+    <tr>
+      <td><input type="checkbox" [checked]="checks" /></td>
+      <ng-container *ngFor="let property of getDataProperties(data)">
+        <td>{{ data[property] }}</td>
+      </ng-container>
+      <td>
+        <div class="dropdown">
+          <i
+            class="bi bi-three-dots"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          </i>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" (click)="showDialogEdit(data)">Edit</a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="deleteItem(data.id)"
+                type="submit"
+                pButton
+                pRipple
+                (click)="showDelete()"
+                >Delete</a
+              >
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <p-toast></p-toast>
+  </ng-template>
 </p-table>

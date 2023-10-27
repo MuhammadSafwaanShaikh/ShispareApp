@@ -2,7 +2,13 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 * {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

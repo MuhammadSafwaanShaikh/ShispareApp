@@ -1,51 +1,52 @@
 .d-flex.flex-column.flex-shrink-0.p-3.text-white {
-    position: relative;
-    top: 30;
-    left: 0;
-    height: 100vh;
-    width: 28vh;
-    padding: 20px;
-    z-index: 1;
+  position: fixed;
+  margin-top: 4.5rem;
+  left: 0;
+  height: 100%;
+  width: 12rem;
+  padding: 20px;
+  z-index: 1;
+  background-color: #00123e;
 }
 
 .help {
-    margin-top: 14rem;
+  margin-top: 15rem;
 }
 
 li {
-    list-style: none;
-    width: 14vw;
+  list-style: none;
+  width: 11vw;
 }
 
 a {
-    color: white;
-    font-size: 14px;
-    margin-top: 10px;
+  color: white;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 a:nth-child(3) {
-    background-color: lightblue;
+  background-color: lightblue;
 }
 
 i {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
-
 a img {
-    width: 18px;
-    height: 18px;
-    background-color: #ffffff;
-    filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(70deg) brightness(99%) contrast(107%);
-    background-color: #ffffff;
-    margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  background-color: #ffffff;
+  filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(70deg)
+    brightness(99%) contrast(107%);
+  background-color: #ffffff;
+  margin-right: 5px;
 }
 
 .nav-pills .nav-link.active {
-    background-color: rgba(147, 221, 255, 0.368);
+  background-color: rgba(147, 221, 255, 0.368);
 }
 
 .nav-pills .nav-link {
-    border-radius: 3px;
-
+  border-radius: 3px;
 }

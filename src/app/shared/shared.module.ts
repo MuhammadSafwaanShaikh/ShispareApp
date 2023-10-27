@@ -14,7 +14,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from '../interceptors/loader.interceptor';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { DialogModule } from 'primeng/dialog';
-
+import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [GridComponent, SpinnerComponent],
   imports: [
@@ -29,15 +30,17 @@ import { DialogModule } from 'primeng/dialog';
     BrowserAnimationsModule,
     DropdownModule,
     MatProgressSpinnerModule,
-    DialogModule
+    DialogModule,
+    ToastModule,
+    InputTextModule,
   ],
-  exports: [
-    GridComponent
+  exports: [GridComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoaderInterceptor,
-    multi: true
-  }]
 })
-export class SharedModule { }
+export class SharedModule {}

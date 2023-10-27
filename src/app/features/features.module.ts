@@ -8,19 +8,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
-import { EmployeeComponent } from './employee/employee.component';
+import { UserComponent } from './user/user.component';
 import { DepartmentComponent } from './department/department.component';
 import { LeaveComponent } from './leave/leave.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogModule } from 'primeng/dialog';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [LoginComponent,
     DesignationComponent,
     ProjectComponent,
-    EmployeeComponent,
+    UserComponent,
     DepartmentComponent,
-    LeaveComponent
+    LeaveComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

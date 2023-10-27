@@ -1,53 +1,83 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white" [ngClass]="{'toggled': isSidebarCollapsed}">
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li>
-            <a routerLink="/shared/dashboard" routerLinkActive="active" class="nav-link text-white">
-                <img src="assets/dashboard.png">
-                Designation
-            </a>
-        </li>
-        <li>
-            <a routerLink="/shared/recruitment" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-person-square"></i>
-                Project
-            </a>
-        </li>
-        <li>
-            <a class="nav-link text-white">
-                <i class="bi bi-person-lines-fill"></i>
-                Employee <i class="bi bi-chevron-down"></i>
-            </a>
-        </li>
-        <li>
-            <a routerLink="/shared/department" routerLinkActive="active" class="nav-link text-white">
-                <i class="bi bi-download"></i>
-                Department
-            </a>
-        </li>
-        <li>
-            <a class="nav-link text-white">
-                <i class="bi bi-box-arrow-right"></i>
-                Leave <i class="bi bi-chevron-down"></i>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link text-white">
-                <i class="bi bi-wallet2"></i>
-                Payroll <i class="bi bi-chevron-down"></i>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link text-white">
-                <i class="bi bi-card-list"></i>
-                Reports <i class="bi bi-chevron-down"></i>
-            </a>
-        </li>
-        <li class="help">
-            <hr>
-            <a class="nav-link text-white ">
-                <i class="bi bi-question-circle"></i>
-                Help
-            </a>
-        </li>
-    </ul>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white">
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li>
+      <a
+        class="nav-link text-white"
+        routerLink="/shared/dashboard"
+        routerLinkActive="active"
+      >
+        <img src="assets/dashboard.png" />
+        Dashboard
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/shared/designation"
+        routerLinkActive="active"
+        class="nav-link text-white"
+      >
+        <i class="bi bi-card-list"></i>
+        Designation
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/shared/project"
+        routerLinkActive="active"
+        class="nav-link text-white"
+      >
+        <i class="bi bi-person-square"></i>
+        Project
+      </a>
+    </li>
+    <!-- <li>
+      <a class="nav-link text-white">
+        <i class="bi bi-person-lines-fill"></i>
+        Employee <i class="bi bi-chevron-down"></i>
+      </a>
+    </li> -->
+    <li>
+      <a
+        class="nav-link text-white"
+        routerLink="/shared/department"
+        routerLinkActive="active"
+      >
+        <i class="bi bi-download"></i>
+        Department
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        routerLink="/shared/leave"
+        routerLinkActive="active"
+      >
+        <i class="bi bi-box-arrow-right"></i>
+        Leave <i class="bi bi-chevron-down"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        routerLink="/shared/user"
+        routerLinkActive="active"
+      >
+        <i class="bi bi-wallet2"></i>
+        User <i class="bi bi-chevron-down"></i>
+      </a>
+    </li>
+    <li>
+      <a class="nav-link text-white">
+        <i class="bi bi-card-list"></i>
+        Reports <i class="bi bi-chevron-down"></i>
+      </a>
+    </li>
+    <li class="help">
+      <hr />
+      <a class="nav-link text-white">
+        <i class="bi bi-question-circle"></i>
+        Help
+      </a>
+    </li>
+  </ul>
 </div>

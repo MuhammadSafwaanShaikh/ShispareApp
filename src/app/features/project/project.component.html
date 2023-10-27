@@ -1,2 +1,10 @@
-<h3>Recruitment</h3>
-<app-grid [data]="featuresService.data" [tableHeading]="recruitmentHeading"></app-grid>
+<h3>Project</h3>
+<app-grid
+  [tableHeading]="projectHeading"
+  [data]="projData"
+  [formGroup]="projectForm"
+  controlName="project"
+  (submitFormEvent)="submitProjectForm()"
+  [formGroup]="updateProjectForm"
+  (submitEditFormEvent)="submitEditProjectForm()"
+></app-grid>

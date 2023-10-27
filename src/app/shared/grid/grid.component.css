@@ -1,59 +1,141 @@
-.nav-pills {
-    border: 1px solid #e5e5e5;
-    margin-left: 25px;
-    width: 96%;
-    border-radius: 5px;
+/* .grid {
+  height: calc(100vh - 4.6rem);
+  overflow-y: scroll;
+} */
 
+.nav-pills {
+  border: 1px solid #e5e5e5;
+  margin-left: 25px;
+  width: 96%;
+  border-radius: 5px;
 }
 
 .nav-item {
-    padding: 6px;
-
+  padding: 6px;
 }
 
 .nav-item a {
-    color: black;
-
+  color: black;
 }
 
 .nav-item a:hover {
-    background-color: rgb(109, 167, 255);
-    cursor: pointer;
-    color: white;
+  background-color: rgb(109, 167, 255);
+  cursor: pointer;
+  color: white;
 }
 
 :host ::ng-deep .custom-table .p-datatable {
-    border-radius: 5px !important;
-    /* Adjust the value to your desired border radius */
-    border: 1px solid #e5e5e5 !important;
-    /* Optionally, you can add a border */
-    overflow: hidden;
-    margin: 25px;
-
+  border-radius: 5px !important;
+  border: 1px solid #e5e5e5 !important;
+  margin: 25px;
 }
 
+::ng-deep .p-dialog-draggable .p-dialog-header {
+  cursor: move;
+  padding-bottom: 1px;
+}
+hr {
+  padding-bottom: 8px;
+}
 th {
-    font-size: 13px;
-    color: gray;
-    font-weight: 500;
+  font-size: 13px;
+  color: gray;
+  font-weight: 500;
 }
 
 .custom-table tr {
-    border-bottom: 1px solid #e5e5e5
-        /* Light gray border */
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .dropdown-toggle {
-    background-color: white;
-    color: black;
-    border: none;
+  background-color: white;
+  color: black;
+  border: none;
 }
 
 .dropdown-menu {
-    min-width: 4rem;
-    cursor: pointer;
+  min-width: 4rem;
+  cursor: pointer;
 }
 
 .btn-success {
-    margin: 20px 0px 0px 25px
+  margin: 20px 0px 0px 25px;
+}
+
+::ng-deep .p-paginator .p-paginator-current {
+  background-color: transparent;
+  border: 0 none;
+  color: #6c757d;
+  min-width: 3rem;
+  height: 3rem;
+  margin-left: -13rem;
+  padding: 0 6.5rem;
+}
+
+::ng-deep .p-paginator .p-dropdown {
+  margin-left: 15rem;
+  margin-right: -6rem;
+  height: 3rem;
+}
+
+::ng-deep ul#pn_id_4_list,
+::ng-deep ul#pn_id_5_list,
+::ng-deep ul#pn_id_6_list,
+::ng-deep ul#pn_id_7_list {
+  padding: 0px;
+}
+
+::ng-deep.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 0.5rem 1.25rem;
+}
+.userForm .label {
+  font-size: 0.9em;
+}
+.userForm input {
+  margin-bottom: 15px;
+  margin-right: 40px;
+  background-color: #fefefe;
+}
+.userForm input .form-control {
+  width: 10em;
+}
+.userForm .col .form-select {
+  margin-bottom: 10px;
+  margin-right: 40px;
+}
+.userForm .card.flex.center {
+  width: 10px;
+}
+
+.userForm .row:nth-of-type(2) .col {
+  margin-bottom: 20px;
+}
+::ng-deep.user-dropdown .p-dropdown {
+  width: 24rem;
+}
+.btn-primary {
+  margin-top: 15px;
+  margin-left: 45em;
+}
+button {
+  background-color: #0ab3d5;
+  border: none;
+}
+button:focus,
+button:hover,
+.btn-success:focus,
+.btn-success:hover {
+  background-color: #0cccf3;
+}
+
+::ng-deep .p-dropdown-items-wrapper {
+  height: 10vh;
+}
+
+::ng-deep.p-dropdown-panel .p-dropdown-header {
+  padding: 0.3rem 0.25rem;
+}
+
+::ng-deep input.p-dropdown-filter.p-inputtext.p-component {
+  padding-bottom: 0px;
 }
