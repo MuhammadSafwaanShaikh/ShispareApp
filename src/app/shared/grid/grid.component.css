@@ -82,7 +82,7 @@ th {
 ::ng-deep ul#pn_id_5_list,
 ::ng-deep ul#pn_id_6_list,
 ::ng-deep ul#pn_id_7_list {
-  padding: 0px;
+  padding: 1px;
 }
 
 ::ng-deep.p-dropdown-panel .p-dropdown-items .p-dropdown-item {

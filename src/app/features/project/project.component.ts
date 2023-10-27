@@ -22,7 +22,7 @@ export class ProjectComponent {
   @Input() projData: any[] = [];
   projectForm!: FormGroup;
   updateProjectForm!: FormGroup;
-  @Input() optionLabel: string = '';
+
   constructor(
     public featuresService: FeaturesService,
     private formService: FormService,

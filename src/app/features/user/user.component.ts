@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FeaturesService } from 'src/app/services/features.service';
 import { FormService } from 'src/app/services/form.service';
 
@@ -11,12 +12,26 @@ export class UserComponent {
   userProjData: any[] = [];
   userDepartData: any[] = [];
   userDesigData: any[] = [];
+
+  userTableHeading: string[] = [
+    'ID',
+    'First Name',
+    'Last Name',
+    'Project Name',
+    'Department Name',
+    'Designation Name',
+  ];
+
+  @Input() userData: any[] = [];
+  userForm!: FormGroup;
+  updateUserForm!: FormGroup;
+
   constructor(
     public featuresService: FeaturesService,
     private formService: FormService
   ) {
-    // this.projectForm = formService.getForm();
-    // this.updateProjectForm = formService.getUpdateForm();
+    this.userForm = formService.getForm();
+    this.updateUserForm = formService.getUpdateForm();
   }
 
   ngOnInit(): void {
@@ -25,6 +40,7 @@ export class UserComponent {
     this.loadDesignations();
   }
 
+  // *Getting Data From Components for dropdown fields
   loadProjects() {
     this.featuresService.getProjects().subscribe({
       next: (response: any) => {
@@ -51,7 +67,6 @@ export class UserComponent {
       },
     });
   }
-
   loadDepartments() {
     this.featuresService.getDepartments().subscribe(
       (response: any) => {
@@ -78,7 +93,6 @@ export class UserComponent {
       // }
     );
   }
-
   loadDesignations() {
     this.featuresService.getDesignations().subscribe((response: any) => {
       if (response && response.designations) {
@@ -99,4 +113,6 @@ export class UserComponent {
       }
     });
   }
+
+  loadUsers() {}
 }

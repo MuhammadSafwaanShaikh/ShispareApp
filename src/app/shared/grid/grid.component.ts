@@ -34,21 +34,7 @@ export class GridComponent {
     this.updateForm = formService.getUpdateForm();
   }
 
-  // cities: City[] | undefined;
-  // formssGroup!: FormGroup;
-
-  ngOnInit() {
-    // this.cities = [
-    //   { name: 'New York', code: 'NY' },
-    //   { name: 'Rome', code: 'RM' },
-    //   { name: 'London', code: 'LDN' },
-    //   { name: 'Istanbul', code: 'IST' },
-    //   { name: 'Paris', code: 'PRS' },
-    // ];
-    // this.formssGroup = new FormGroup({
-    //   selectedCity: new FormControl<City | null>(null),
-    // });
-  }
+  ngOnInit() {}
 
   onSubmit() {
     this.submitFormEvent.emit(this.form.value);
