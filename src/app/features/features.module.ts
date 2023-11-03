@@ -14,26 +14,30 @@ import { LeaveComponent } from './leave/leave.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogModule } from 'primeng/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
-  declarations: [LoginComponent,
+  declarations: [
+    LoginComponent,
     DesignationComponent,
     ProjectComponent,
     UserComponent,
     DepartmentComponent,
     LeaveComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
+  providers: [],
   imports: [
     CommonModule,
     BrowserModule,
     RouterModule,
     AppRoutingModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
-    DialogModule
+    DialogModule,
+    MessagesModule,
   ],
-
 })
-export class FeaturesModule { }
+export class FeaturesModule {}

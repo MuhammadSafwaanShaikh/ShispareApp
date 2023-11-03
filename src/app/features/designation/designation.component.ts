@@ -59,16 +59,12 @@ export class DesignationComponent {
     if (this.designationForm.valid) {
       this.featuresService
         .addDesignationData(this.designationForm.value)
-        .subscribe(
-          (response) => {
-            console.log('Data sent successfully:', response);
-            this.loadDesignations();
-            this.designationForm.reset();
-          }
-          // (error) => {
-          //   console.error('Error sending data:', error);
-          // }
-        );
+        .subscribe((response) => {
+          console.log('Data sent successfully:', response);
+          // this.loadDesignations();
+          console.log('Show data:', this.designationForm.getRawValue());
+          this.designationForm.reset();
+        });
     }
   }
 

@@ -9,9 +9,8 @@ import { CrudService } from './crud.service';
 export class FeaturesService {
   private registerUrl = 'http://13.228.165.0/api/register';
   private loginUrl = 'http://13.228.165.0/api/login';
-  private baseUrl = 'http://13.228.165.0/api';
   private _data: any[] = [];
-  private authToken: string | null;
+  authToken: string | null;
 
   constructor(private http: HttpClient, private crudService: CrudService) {
     this.authToken = localStorage.getItem('token');
@@ -193,8 +192,8 @@ export class FeaturesService {
   getDepartments(): Observable<any[]> {
     return this.crudService.getList('departments');
   }
-  addDepartmentData(projData: any): Observable<any> {
-    return this.crudService.create('departmentstore', projData);
+  addDepartmentData(departData: any): Observable<any> {
+    return this.crudService.create('departmentstore', departData);
   }
   updateDepartmentData(id: any | null, data: any): Observable<any> {
     return this.crudService.update('department', id, data);
@@ -208,8 +207,8 @@ export class FeaturesService {
   getDesignations(): Observable<any[]> {
     return this.crudService.getList('designations');
   }
-  addDesignationData(projData: any): Observable<any> {
-    return this.crudService.create('designationstore', projData);
+  addDesignationData(desigData: any): Observable<any> {
+    return this.crudService.create('designationstore', desigData);
   }
   updateDesignationData(id: any | null, data: any): Observable<any> {
     return this.crudService.update('designation', id, data);
@@ -218,4 +217,16 @@ export class FeaturesService {
     return this.crudService.delete('designation', id);
   }
   //! Users API
+  getUsers(): Observable<any[]> {
+    return this.crudService.getList('users');
+  }
+  addUserData(userData: any): Observable<any> {
+    return this.crudService.create('userstore', userData);
+  }
+  updateUserData(id: any | null, data: any): Observable<any> {
+    return this.crudService.update('user', id, data);
+  }
+  deleteUser(id: any | null): Observable<any[]> {
+    return this.crudService.delete('user', id);
+  }
 }

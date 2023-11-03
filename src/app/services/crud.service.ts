@@ -59,13 +59,14 @@ export class CrudService {
 
   delete(endpoint: string, id: number | null): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.delete(`${this.baseUrl}/${endpoint}/${id}/delete`, {
-      headers,
-    });
-    // .pipe(
-    //   catchError((error) => {
-    //     return this.handleError(error);
-    //   })
-    // );
+    return this.http
+      .delete(`${this.baseUrl}/${endpoint}/${id}/delete`, {
+        headers,
+      })
+      .pipe(
+        catchError((error) => {
+          return this.handleError(error);
+        })
+      );
   }
 }

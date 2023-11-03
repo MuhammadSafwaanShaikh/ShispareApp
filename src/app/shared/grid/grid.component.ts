@@ -25,7 +25,8 @@ export class GridComponent {
   visible: boolean = false;
   visibleEdit: boolean = false;
   checks: boolean = false;
-
+  reportTo: string = '';
+  department: string = '';
   constructor(
     private formService: FormService,
     private messageService: MessageService
@@ -69,6 +70,8 @@ export class GridComponent {
 
   showDialogEdit(data: any) {
     this.selectedId = data.id;
+    console.log(data);
+    // this.updateForm.patchValue(data);
     this.updateForm.patchValue({
       department: data.department,
     });
@@ -78,6 +81,15 @@ export class GridComponent {
     this.updateForm.patchValue({
       designation: data.designation,
     });
+    this.updateForm.patchValue({
+      name: data.name,
+      email: data.email,
+      status: data.status,
+      department_id: data.department_id,
+      report_to: data.report_to,
+    });
+    console.log(this.updateForm.value);
+
     this.visibleEdit = true;
     this.formService.setSelectedId(this.selectedId);
   }

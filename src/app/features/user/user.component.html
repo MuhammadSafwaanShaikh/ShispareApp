@@ -1,11 +1,20 @@
+<p-messages
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="false"
+></p-messages>
 <h3>Users</h3>
+
 <app-grid
-  controlName="user"
   [dataFromUserProj]="userProjData"
   [dataFromUserDepart]="userDepartData"
   [dataFromUserDesig]="userDesigData"
   [tableHeading]="userTableHeading"
+  [data]="userData"
+  controlName="user"
   [formGroup]="userForm"
+  (submitFormEvent)="submitUserForm()"
   [formGroup]="updateUserForm"
+  (submitEditFormEvent)="submitEditUserForm()"
 >
 </app-grid>

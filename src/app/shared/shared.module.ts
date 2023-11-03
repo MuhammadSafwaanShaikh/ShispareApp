@@ -16,6 +16,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
+
 @NgModule({
   declarations: [GridComponent, SpinnerComponent],
   imports: [

@@ -23,6 +23,14 @@ export class FormService {
 
   private createForm() {
     this.form = this.fb.group({
+      name: [''],
+      email: [''],
+      password: [''],
+      department_id: [''],
+      designation_id: [''],
+      project_id: [''],
+      report_to: [''],
+      status: [''],
       project: [''],
       department: [''],
       designation: [''],
@@ -39,6 +47,14 @@ export class FormService {
 
   private createUpdateForm() {
     this.updateForm = this.fb.group({
+      name: [''],
+      email: [''],
+      password: [''],
+      department_id: [''],
+      designation_id: [''],
+      project_id: [''],
+      report_to: [''],
+      status: [''],
       project: [''],
       department: [''],
       designation: [''],

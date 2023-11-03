@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SharedComponent } from './shared/shared.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [AppComponent, SharedComponent],
@@ -21,6 +22,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CoreModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    MessagesModule,
   ],
 })
 export class AppModule {}
