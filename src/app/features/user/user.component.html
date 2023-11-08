@@ -5,16 +5,16 @@
 ></p-messages>
 <h3>Users</h3>
 
-<app-grid
+<app-form
+  [apiErrors]="apiErrors"
   [dataFromUserProj]="userProjData"
   [dataFromUserDepart]="userDepartData"
   [dataFromUserDesig]="userDesigData"
-  [tableHeading]="userTableHeading"
-  [data]="userData"
   controlName="user"
   [formGroup]="userForm"
   (submitFormEvent)="submitUserForm()"
   [formGroup]="updateUserForm"
   (submitEditFormEvent)="submitEditUserForm()"
->
-</app-grid>
+  [data]="userData"
+></app-form>
+<app-grid [tableHeading]="userTableHeading" [data]="userData"></app-grid>

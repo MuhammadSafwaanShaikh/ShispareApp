@@ -16,9 +16,11 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormComponent } from './form/form.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
-  declarations: [GridComponent, SpinnerComponent],
+  declarations: [GridComponent, SpinnerComponent, FormComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -35,8 +37,9 @@ import { InputTextModule } from 'primeng/inputtext';
     ToastModule,
     InputTextModule,
   ],
-  exports: [GridComponent],
+  exports: [GridComponent, FormComponent],
   providers: [
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,

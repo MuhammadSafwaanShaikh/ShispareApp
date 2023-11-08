@@ -34,9 +34,7 @@
   cursor: move;
   padding-bottom: 1px;
 }
-hr {
-  padding-bottom: 8px;
-}
+
 th {
   font-size: 13px;
   color: gray;
@@ -47,19 +45,9 @@ th {
   border-bottom: 1px solid #e5e5e5;
 }
 
-.dropdown-toggle {
-  background-color: white;
-  color: black;
-  border: none;
-}
-
 .dropdown-menu {
   min-width: 4rem;
   cursor: pointer;
-}
-
-.btn-success {
-  margin: 20px 0px 0px 25px;
 }
 
 ::ng-deep .p-paginator .p-paginator-current {
@@ -76,69 +64,4 @@ th {
   margin-left: 15rem;
   margin-right: -6rem;
   height: 3rem;
-}
-
-::ng-deep ul#pn_id_4_list,
-::ng-deep ul#pn_id_5_list,
-::ng-deep ul#pn_id_6_list,
-::ng-deep ul#pn_id_7_list {
-  padding: 1px;
-}
-
-::ng-deep.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-  padding: 0.5rem 1.25rem;
-}
-.userForm .label {
-  font-size: 0.9em;
-}
-.userForm input {
-  margin-bottom: 15px;
-  margin-right: 40px;
-  background-color: #fefefe;
-}
-.userForm input .form-control {
-  width: 10em;
-}
-.userForm .col .form-select {
-  margin-bottom: 10px;
-  margin-right: 40px;
-}
-.userForm .card.flex.center {
-  width: 10px;
-}
-
-.userForm .row:nth-of-type(2) .col {
-  margin-bottom: 20px;
-}
-.userForm .row:nth-of-type(3) .col {
-  margin-bottom: 20px;
-}
-::ng-deep.user-dropdown .p-dropdown {
-  width: 24rem;
-}
-.btn-primary {
-  margin-top: 15px;
-  margin-left: 45em;
-}
-button {
-  background-color: #0ab3d5;
-  border: none;
-}
-button:focus,
-button:hover,
-.btn-success:focus,
-.btn-success:hover {
-  background-color: #0cccf3;
-}
-
-::ng-deep .p-dropdown-items-wrapper {
-  height: 10vh;
-}
-
-::ng-deep.p-dropdown-panel .p-dropdown-header {
-  padding: 0.3rem 0.25rem;
-}
-
-::ng-deep input.p-dropdown-filter.p-inputtext.p-component {
-  padding-bottom: 0px;
 }

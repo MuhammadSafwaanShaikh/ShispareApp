@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Output,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Message } from 'primeng/api';
 
@@ -15,6 +20,7 @@ export class UserComponent {
   userProjData: any[] = [];
   userDepartData: any[] = [];
   userDesigData: any[] = [];
+
   userTableHeading: string[] = [
     'ID',
     'Name',
@@ -31,6 +37,7 @@ export class UserComponent {
   @Input() userData: any[] = [];
   userForm!: FormGroup;
   updateUserForm!: FormGroup;
+  @Input() apiErrors: any = {};
 
   constructor(
     public featuresService: FeaturesService,
@@ -146,36 +153,33 @@ export class UserComponent {
   }
 
   submitUserForm() {
-    // if (this.userForm.valid) {
-    this.featuresService.addUserData(this.userForm.value).subscribe(
-      (response) => {
-        console.log('Data sent successfully:', response);
-        console.log('Data sent successfully:', this.userForm.value);
-        this.loadUsers();
-        this.userForm.reset();
-        this.messages = [
-          {
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Added Successfully',
-            life: 3000,
-          },
-        ];
-      },
-      (error) => {
-        console.error(error);
-        this.messages = [
-          {
-            severity: 'error',
-            summary: 'Error',
-            detail: error.error.message,
-            life: 3000,
-          },
-        ];
-      }
-    );
+    if (this.userForm.valid) {
+      this.featuresService.addUserData(this.userForm.value).subscribe(
+        (response) => {
+          console.log('Data sent successfully:', response);
+          console.log('Data sent successfully:', this.userForm.value);
+          this.loadUsers();
+          this.userForm.reset();
+          this.messages = [
+            {
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Added Successfully',
+              life: 3000,
+            },
+          ];
+        },
+
+        (error) => {
+          console.error('Error adding user:', error);
+          if (error.error && error.error.errors) {
+            // Handle validation errors here
+            this.apiErrors = error.error.errors;
+          }
+        }
+      );
+    }
   }
-  // console.log(this.userForm.getRawValue());
 
   submitEditUserForm() {
     this.formService.getSelectedId().subscribe((id) => {

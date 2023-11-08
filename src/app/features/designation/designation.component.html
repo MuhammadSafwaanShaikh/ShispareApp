@@ -1,10 +1,12 @@
 <h3>Designation</h3>
-<app-grid
-  [tableHeading]="designationTableHeading"
-  [data]="desigData"
+<app-form
   [formGroup]="designationForm"
   controlName="designation"
   (submitFormEvent)="submitDesignationForm()"
   [formGroup]="updateDesignationForm"
   (submitEditFormEvent)="submitEditDesignationForm()"
+></app-form>
+<app-grid
+  [tableHeading]="designationTableHeading"
+  [data]="desigData"
 ></app-grid>

@@ -1,10 +1,9 @@
 <h3>Project</h3>
-<app-grid
-  [tableHeading]="projectHeading"
-  [data]="projData"
+<app-form
   controlName="project"
   [formGroup]="projectForm"
   (submitFormEvent)="submitProjectForm()"
   [formGroup]="updateProjectForm"
   (submitEditFormEvent)="submitEditProjectForm()"
-></app-grid>
+></app-form>
+<app-grid [tableHeading]="projectHeading" [data]="projData"></app-grid>

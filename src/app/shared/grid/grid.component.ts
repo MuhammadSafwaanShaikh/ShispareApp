@@ -12,40 +12,20 @@ import { MessageService } from 'primeng/api';
 export class GridComponent {
   @Input() tableHeading: string[] = [];
   @Input() data: any[] = [];
-  @Input() dataFromUserProj: any[] = [];
-  @Input() dataFromUserDepart: any[] = [];
-  @Input() dataFromUserDesig: any[] = [];
-  @Input() form!: FormGroup;
   @Input() updateForm!: FormGroup;
-  @Input() controlName: string = '';
+
   selectedId: any;
-  @Output() submitFormEvent = new EventEmitter();
-  @Output() submitEditFormEvent = new EventEmitter();
+
   selectedCountry: string | undefined;
   visible: boolean = false;
   visibleEdit: boolean = false;
   checks: boolean = false;
-  reportTo: string = '';
-  department: string = '';
-  constructor(
-    private formService: FormService,
-    private messageService: MessageService
-  ) {
-    this.form = formService.getForm();
+
+  constructor(private formService: FormService) {
     this.updateForm = formService.getUpdateForm();
   }
 
   ngOnInit() {}
-
-  onSubmit() {
-    this.submitFormEvent.emit(this.form.value);
-    this.visible = false;
-  }
-
-  submitEditForm(id: any) {
-    this.submitEditFormEvent.emit(this.updateForm.value);
-    this.visibleEdit = false;
-  }
 
   bulk(e: any) {
     if (e.target.checked == true) {
@@ -69,52 +49,11 @@ export class GridComponent {
   }
 
   showDialogEdit(data: any) {
+    this.formService.setDialogVisibility(true);
+
     this.selectedId = data.id;
     console.log(data);
-    // this.updateForm.patchValue(data);
-    this.updateForm.patchValue({
-      department: data.department,
-    });
-    this.updateForm.patchValue({
-      project: data.project,
-    });
-    this.updateForm.patchValue({
-      designation: data.designation,
-    });
-    this.updateForm.patchValue({
-      name: data.name,
-      email: data.email,
-      status: data.status,
-      department_id: data.department_id,
-      report_to: data.report_to,
-    });
-    console.log(this.updateForm.value);
-
-    this.visibleEdit = true;
+    this.updateForm.patchValue(data);
     this.formService.setSelectedId(this.selectedId);
-  }
-
-  //*ToastService
-
-  show() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Added Successfully',
-    });
-  }
-  showInfo() {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Updated',
-      detail: 'Updated Successfully',
-    });
-  }
-  showDelete() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Deleted Successfully',
-    });
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,9 @@ export class FormService {
   private updateForm!: FormGroup;
   private selectedIdSubject = new BehaviorSubject<number | null>(null);
   private deleteIdSubject = new BehaviorSubject<number | null>(null);
+  private dialogVisibilitySubject = new BehaviorSubject<boolean>(false);
+  dialogVisibility$ = this.dialogVisibilitySubject.asObservable();
+
   deleteAction$ = this.deleteIdSubject.asObservable();
 
   constructor(private fb: FormBuilder) {
@@ -23,14 +26,14 @@ export class FormService {
 
   private createForm() {
     this.form = this.fb.group({
-      name: [''],
-      email: [''],
-      password: [''],
-      department_id: [''],
-      designation_id: [''],
-      project_id: [''],
-      report_to: [''],
-      status: [''],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      department_id: ['', Validators.required],
+      designation_id: ['', Validators.required],
+      project_id: ['', Validators.required],
+      report_to: ['', [Validators.required]],
+      status: ['', [Validators.required, Validators.pattern('[0-1*]')]],
       project: [''],
       department: [''],
       designation: [''],
@@ -47,14 +50,14 @@ export class FormService {
 
   private createUpdateForm() {
     this.updateForm = this.fb.group({
-      name: [''],
-      email: [''],
-      password: [''],
-      department_id: [''],
-      designation_id: [''],
-      project_id: [''],
-      report_to: [''],
-      status: [''],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      department_id: ['', Validators.required],
+      designation_id: ['', Validators.required],
+      project_id: ['', Validators.required],
+      report_to: ['', [Validators.required]],
+      status: ['', [Validators.required, Validators.pattern('[0-1*]')]],
       project: [''],
       department: [''],
       designation: [''],
@@ -75,6 +78,10 @@ export class FormService {
 
   getSelectedId() {
     return this.selectedIdSubject.asObservable();
+  }
+
+  setDialogVisibility(visibleEdit: boolean) {
+    this.dialogVisibilitySubject.next(visibleEdit);
   }
 
   deleteItem(id: number) {

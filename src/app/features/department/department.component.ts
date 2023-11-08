@@ -20,7 +20,6 @@ export class DepartmentComponent {
   @Input() departData: any[] = [];
   departmentForm!: FormGroup;
   updateDepartmentForm!: FormGroup;
-
   constructor(
     private featuresService: FeaturesService,
     private formService: FormService
