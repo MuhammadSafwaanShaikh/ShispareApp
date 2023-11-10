@@ -1,5 +1,6 @@
 import { Component, Injector, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DynamicFormControl } from 'src/app/interface/dynamicFormControls';
 import { FeaturesService } from 'src/app/services/features.service';
 import { FormService } from 'src/app/services/form.service';
 
@@ -20,6 +21,8 @@ export class DepartmentComponent {
   @Input() departData: any[] = [];
   departmentForm!: FormGroup;
   updateDepartmentForm!: FormGroup;
+  dynamicDepartForm: DynamicFormControl[] = [];
+
   constructor(
     private featuresService: FeaturesService,
     private formService: FormService
@@ -32,13 +35,25 @@ export class DepartmentComponent {
     this.loadDepartments();
     this.deleteDepartment();
   }
+  generateDynamicFormModel() {
+    // Assuming you have unique keys for your form controls
+    const dynamicUserFormModel: DynamicFormControl[] = [
+      {
+        key: 'department',
+        label: 'Select Department',
+        controlType: 'input',
+        type: 'text',
+      },
+    ];
 
+    // Assign the generated form model to the dynamicUserForm
+    this.dynamicDepartForm = dynamicUserFormModel;
+  }
   loadDepartments() {
     this.featuresService.getDepartments().subscribe(
       (response: any) => {
         if (response && response.departments) {
           const transformedData: any[] = [];
-
           for (const item of response.departments) {
             transformedData.push({
               id: item.id,
@@ -48,6 +63,7 @@ export class DepartmentComponent {
             });
           }
           this.departData = transformedData;
+          this.generateDynamicFormModel();
         } else {
           console.error(
             'API response is missing departments or is in an unexpected format.'

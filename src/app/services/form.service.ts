@@ -34,9 +34,9 @@ export class FormService {
       project_id: ['', Validators.required],
       report_to: ['', [Validators.required]],
       status: ['', [Validators.required, Validators.pattern('[0-1*]')]],
-      project: [''],
-      department: [''],
-      designation: [''],
+      project: ['', [Validators.required]],
+      department: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
     });
   }
 
@@ -58,9 +58,9 @@ export class FormService {
       project_id: ['', Validators.required],
       report_to: ['', [Validators.required]],
       status: ['', [Validators.required, Validators.pattern('[0-1*]')]],
-      project: [''],
-      department: [''],
-      designation: [''],
+      project: ['', [Validators.required]],
+      department: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
     });
   }
 

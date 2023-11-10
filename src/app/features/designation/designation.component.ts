@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { DynamicFormControl } from 'src/app/interface/dynamicFormControls';
 import { FeaturesService } from 'src/app/services/features.service';
 import { FormService } from 'src/app/services/form.service';
 
@@ -16,6 +17,7 @@ export class DesignationComponent {
     'Updated At',
     'Action',
   ];
+  dynamicDesigForm: DynamicFormControl[] = [];
 
   @Input() desigData: any[] = [];
   designationForm!: FormGroup;
@@ -33,7 +35,20 @@ export class DesignationComponent {
     this.loadDesignations();
     this.deleteDesignation();
   }
+  generateDynamicFormModel() {
+    // Assuming you have unique keys for your form controls
+    const dynamicUserFormModel: DynamicFormControl[] = [
+      {
+        key: 'designation',
+        label: 'Select Designation',
+        controlType: 'input',
+        type: 'text',
+      },
+    ];
 
+    // Assign the generated form model to the dynamicUserForm
+    this.dynamicDesigForm = dynamicUserFormModel;
+  }
   loadDesignations() {
     this.featuresService.getDesignations().subscribe((response: any) => {
       if (response && response.designations) {
@@ -53,6 +68,7 @@ export class DesignationComponent {
         );
       }
     });
+    this.generateDynamicFormModel();
   }
 
   submitDesignationForm() {

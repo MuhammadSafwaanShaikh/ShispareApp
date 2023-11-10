@@ -4,9 +4,7 @@
   [closable]="false"
 ></p-messages>
 <h3>Users</h3>
-
 <app-form
-  [apiErrors]="apiErrors"
   [dataFromUserProj]="userProjData"
   [dataFromUserDepart]="userDepartData"
   [dataFromUserDesig]="userDesigData"
@@ -15,6 +13,6 @@
   (submitFormEvent)="submitUserForm()"
   [formGroup]="updateUserForm"
   (submitEditFormEvent)="submitEditUserForm()"
-  [data]="userData"
+  [formModel]="dynamicUserForm"
 ></app-form>
 <app-grid [tableHeading]="userTableHeading" [data]="userData"></app-grid>

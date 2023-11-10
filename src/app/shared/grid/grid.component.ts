@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 import { MessageService } from 'primeng/api';
+import { DynamicFormControl } from 'src/app/interface/dynamicFormControls';
 
 @Component({
   selector: 'app-grid',
@@ -20,11 +21,12 @@ export class GridComponent {
   visible: boolean = false;
   visibleEdit: boolean = false;
   checks: boolean = false;
-
-  constructor(private formService: FormService) {
+  constructor(
+    private formService: FormService,
+    private messageService: MessageService
+  ) {
     this.updateForm = formService.getUpdateForm();
   }
-
   ngOnInit() {}
 
   bulk(e: any) {
@@ -50,10 +52,33 @@ export class GridComponent {
 
   showDialogEdit(data: any) {
     this.formService.setDialogVisibility(true);
-
     this.selectedId = data.id;
     console.log(data);
     this.updateForm.patchValue(data);
     this.formService.setSelectedId(this.selectedId);
   }
+
+  //*ToastService
+
+  // show() {
+  //   this.messageService.add({
+  //     severity: 'success',
+  //     summary: 'Success',
+  //     detail: 'Added Successfully',
+  //   });
+  // }
+  // showInfo() {
+  //   this.messageService.add({
+  //     severity: 'info',
+  //     summary: 'Updated',
+  //     detail: 'Updated Successfully',
+  //   });
+  // }
+  // showDelete() {
+  //   this.messageService.add({
+  //     severity: 'success',
+  //     summary: 'Success',
+  //     detail: 'Deleted Successfully',
+  //   });
+  // }
 }

@@ -23,6 +23,10 @@
   cursor: pointer;
   color: white;
 }
+.dropdown-menu {
+  min-width: 4rem;
+  cursor: pointer;
+}
 
 :host ::ng-deep .custom-table .p-datatable {
   border-radius: 5px !important;
@@ -34,7 +38,6 @@
   cursor: move;
   padding-bottom: 1px;
 }
-
 th {
   font-size: 13px;
   color: gray;
@@ -43,11 +46,6 @@ th {
 
 .custom-table tr {
   border-bottom: 1px solid #e5e5e5;
-}
-
-.dropdown-menu {
-  min-width: 4rem;
-  cursor: pointer;
 }
 
 ::ng-deep .p-paginator .p-paginator-current {
