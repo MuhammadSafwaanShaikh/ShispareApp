@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DynamicFormControl } from 'src/app/interface/dynamicFormControls';
 import { FeaturesService } from 'src/app/services/features.service';
 import { FormService } from 'src/app/services/form.service';
 
@@ -12,7 +12,7 @@ import { FormService } from 'src/app/services/form.service';
 export class ProjectComponent {
   projectHeading: string[] = [
     'ID',
-    'Department Name',
+    'Project Name',
     'Created At',
     'Updated At',
     'Status',
@@ -22,47 +22,43 @@ export class ProjectComponent {
   @Input() projData: any[] = [];
   projectForm!: FormGroup;
   updateProjectForm!: FormGroup;
+  dynamicProjectForm: DynamicFormControl[] = [];
 
+  visible!: boolean;
+  visibleEdit!: boolean;
   constructor(
     public featuresService: FeaturesService,
     private formService: FormService,
-    private router: Router
+    private fb: FormBuilder
   ) {
     this.projectForm = formService.getForm();
     this.updateProjectForm = formService.getUpdateForm();
   }
-
+  generateDynamicFormModel() {
+    const dynamicFormModel: DynamicFormControl[] = [
+      {
+        key: 'project',
+        label: 'Select Project',
+        controlType: 'input',
+        type: 'text',
+      },
+      {
+        key: 'status',
+        label: 'Status',
+        controlType: 'dropdown',
+        type: 'text',
+        options: [
+          { label: 'Active', value: 'Active' },
+          { label: 'Inactive', value: 'Inactive' },
+        ],
+      },
+    ];
+    this.dynamicProjectForm = dynamicFormModel;
+  }
   ngOnInit(): void {
     this.loadProjects();
     this.deleteProject();
   }
-
-  // loadProjects() {
-  //   this.featuresService.getProjects().subscribe(
-  //     (response: any) => {
-  //       if (response && response.projects) {
-  //         const transformedData: any[] = [];
-  //         for (const item of response.projects) {
-  //           transformedData.push({
-  //             id: item.id,
-  //             project: item.project,
-  //             created_at: item.created_at,
-  //             updated_at: item.updated_at,
-  //             status: item.status,
-  //           });
-  //         }
-  //         this.projData = transformedData;
-  //       } else {
-  //         console.error(
-  //           'API response is missing departments or is in an unexpected format.'
-  //         );
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error loading departments:', error);
-  //     }
-  //   );
-  // }
 
   loadProjects() {
     this.featuresService.getProjects().subscribe({
@@ -79,6 +75,7 @@ export class ProjectComponent {
             });
           }
           this.projData = transformedData;
+          this.generateDynamicFormModel();
         } else {
           console.error(
             'API response is missing departments or is in an unexpected format.'
@@ -92,32 +89,40 @@ export class ProjectComponent {
   }
 
   submitProjectForm() {
-    if (this.projectForm.valid) {
-      this.featuresService.addProjectsData(this.projectForm.value).subscribe(
-        (response) => {
-          console.log('Data sent successfully:', response);
-          this.loadProjects();
-          this.projectForm.reset();
-        }
-        // (error) => {
-        //   console.error('Error sending data:', error);
-        // }
-      );
-    }
+    this.featuresService.addProjectsData(this.projectForm.value).subscribe(
+      (response) => {
+        console.log('Data sent successfully:', response);
+        this.visible = false;
+        this.loadProjects();
+        this.projectForm.reset();
+      },
+      (error) => {
+        console.error(error);
+        //Validation errors returned from API
+        const apiErrors = error.error.errors;
+        this.handleApiErrors(apiErrors);
+      }
+    );
   }
 
   submitEditProjectForm() {
     this.formService.getSelectedId().subscribe((id) => {
-      if (this.updateProjectForm.valid) {
-        this.featuresService
-          .updateProjectData(id, this.updateProjectForm.value)
-          .subscribe((response) => {
+      this.featuresService
+        .updateProjectData(id, this.updateProjectForm.value)
+        .subscribe(
+          (response) => {
             console.log('Data updated successfully', response);
-            //this.featuresService.getProjects();
+            this.visibleEdit = false;
             this.loadProjects();
             this.updateProjectForm.reset();
-          });
-      }
+          },
+          (error) => {
+            console.error(error);
+            //Validation errors returned from API
+            const apiErrors = error.error.errors;
+            this.handleApiErrors(apiErrors);
+          }
+        );
     });
   }
 
@@ -128,6 +133,14 @@ export class ProjectComponent {
           console.log('Delete project with ID:', response);
           this.loadProjects();
         });
+      }
+    });
+  }
+  private handleApiErrors(apiErrors: any) {
+    Object.keys(apiErrors).forEach((controlName) => {
+      const formControl = this.projectForm.get(controlName);
+      if (formControl) {
+        formControl.setErrors({ apiError: apiErrors[controlName][0] });
       }
     });
   }

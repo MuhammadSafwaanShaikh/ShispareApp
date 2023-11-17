@@ -20,8 +20,8 @@ export class FormComponent {
   selectedId: any;
   @Output() submitFormEvent = new EventEmitter();
   @Output() submitEditFormEvent = new EventEmitter();
-  visible: boolean = false;
-  visibleEdit: boolean = false;
+  @Input() visible: boolean = false;
+  @Input() visibleEdit: boolean = false;
   private subscription: Subscription = new Subscription();
 
   @Input() formModel: DynamicFormControl[] = [];
@@ -45,16 +45,11 @@ export class FormComponent {
     this.formService.setDialogVisibility(false);
   }
   onSubmit() {
-    if (this.form.valid) {
-      this.submitFormEvent.emit(this.form.value);
-      this.visible = false;
-    }
-    console.log('Form status:', this.form.status);
+    this.submitFormEvent.emit(this.form.value);
   }
 
   submitEditForm(id: any) {
     this.submitEditFormEvent.emit(this.updateForm.value);
-    this.visibleEdit = false;
   }
 
   deleteItem(id: number) {
@@ -65,7 +60,17 @@ export class FormComponent {
   showDialog() {
     this.visible = true;
   }
-  resetForm() {
+  onClose() {
+    this.clearApiErrors();
     this.form.reset();
+  }
+  clearApiErrors() {
+    // Iterate through form controls and clear API errors
+    Object.keys(this.form.controls).forEach((key) => {
+      const control = this.form.get(key);
+      if (control) {
+        control.setErrors(null);
+      }
+    });
   }
 }

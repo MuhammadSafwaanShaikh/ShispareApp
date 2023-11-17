@@ -42,20 +42,64 @@ export class GridComponent {
     this.visible = false;
   }
 
+  // getDataProperties(data: any): string[] {
+  //   return Object.keys(data);
+  // }
+
   getDataProperties(data: any): string[] {
-    return Object.keys(data);
+    // List of properties to exclude from the table
+    const excludedProperties = [
+      'department_id',
+      'project_id',
+      'designation_id',
+      'report_to_id',
+    ];
+
+    const allProperties = Object.keys(data);
+    const visibleProperties = allProperties.filter(
+      (property) => !excludedProperties.includes(property)
+    );
+
+    return visibleProperties;
   }
 
-  showDialog() {
-    this.visible = true;
-  }
+  // getProperty(data: any, propertyPath: string): any {
+  //   const properties = propertyPath.split('.');
+  //   let value = data;
+  //   for (const prop of properties) {
+  //     if (value && value.hasOwnProperty(prop)) {
+  //       value = value[prop];
+  //     } else {
+  //       return null; // or handle this case accordingly
+  //     }
+  //   }
+  //   return value;
+  // }
+
+  // showDialog() {
+  //   this.visible = true;
+  // }
 
   showDialogEdit(data: any) {
     this.formService.setDialogVisibility(true);
     this.selectedId = data.id;
-    console.log(data);
-    this.updateForm.patchValue(data);
+
+    this.updateForm.patchValue({
+      name: data.name,
+      email: data.email,
+      status: data.status,
+      department: data.department,
+      project: data.project,
+      designation: data.designation,
+      department_id: data.department_id,
+      designation_id: data.designation_id,
+      project_id: data.project_id,
+      // report_to_id: data.report_to_id,
+      report_to: data.report_to_id,
+    });
     this.formService.setSelectedId(this.selectedId);
+    console.log(this.updateForm.value);
+    console.log(data);
   }
 
   //*ToastService

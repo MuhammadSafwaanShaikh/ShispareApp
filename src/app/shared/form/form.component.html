@@ -2,7 +2,8 @@
 <p-dialog
   header="Add Info"
   [(visible)]="visible"
-  [style]="{ width: '60vw', height: '73vh' }"
+  [style]="{ width: '60vw', height: '75vh' }"
+  (onHide)="onClose()"
   ><hr />
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formgrid grid">
     <div *ngFor="let control of formModel" class="field col-12 md:col-6">
@@ -17,6 +18,11 @@
         />
 
         <p-dropdown
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
+          id="{{ control.key }}"
+          name="{{ control.key }}"
           *ngSwitchCase="'dropdown'"
           [formControlName]="control.key"
           [options]="control.options"
@@ -25,7 +31,14 @@
           placeholder="Select a {{ control.label }}"
         ></p-dropdown>
 
-        <div
+        <div *ngIf="form.get(control.key)?.errors?.['apiError']">
+          <small
+            class="text-danger"
+            >{{ form.get(control.key)?.errors?.['apiError'] }}</small
+          >
+        </div>
+
+        <!-- <div
           *ngIf="
         form.get(control.key)?.errors?.['required'] &&(form.get(control.key)?.touched|| form.get(control.key)?.dirty)
       "
@@ -43,26 +56,19 @@
           *ngIf=" form.get(control.key)?.errors?.['pattern'] && (form.get(control.key)?.touched ||form.get(control.key)?.dirty)"
         >
           <small class="text-danger">Enter 0 or 1</small>
-        </div>
+        </div> -->
       </div>
-      <div
+      <!-- <div
         *ngIf="
       form.get(control.key)?.errors?.['email'] &&(form.get(control.key)?.touched|| form.get(control.key)?.dirty)
     "
       >
         <small class="text-danger">Email is invalid</small>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <button
-          type="submit"
-          class="btn btn-primary"
-          pButton
-          pRipple
-          [disabled]="form.invalid"
-          [ngClass]="{ 'disabled-button': form.invalid }"
-        >
+        <button type="submit" class="btn btn-primary" pButton pRipple>
           Submit
         </button>
       </div>
@@ -70,160 +76,10 @@
   </form>
 </p-dialog>
 
-<!-- *EDIT FORM -->
-
-<!-- <p-dialog
-  header="Edit Info"
-  [(visible)]="visibleEdit"
-  [style]="{ width: '60vw', height: '73vh' }"
->
-  <hr />
-  <form [formGroup]="updateForm" (ngSubmit)="submitEditForm(selectedId)">
-    <div *ngIf="controlName === 'department'">
-      <label class="form-label">Department Name</label>
-      <input
-        formControlName="department"
-        type="name"
-        class="form-control form-control-lg"
-      />
-      <hr />
-      <button type="submit" class="btn btn-primary" pButton pRipple>
-        Save
-      </button>
-    </div>
-    <div *ngIf="controlName === 'project'">
-      <label class="form-label">Project Name</label>
-      <input
-        formControlName="project"
-        type="name"
-        class="form-control form-control-lg"
-      />
-      <hr />
-      <button type="submit" class="btn btn-primary" pButton pRipple>
-        Save
-      </button>
-    </div>
-
-    <div *ngIf="controlName === 'designation'">
-      <label class="form-label">Designation Name</label>
-      <input
-        formControlName="designation"
-        type="name"
-        class="form-control form-control-lg"
-      />
-      <hr />
-      <button type="submit" class="btn btn-primary" pButton pRipple>
-        Save
-      </button>
-    </div>
-
-    <div class="userForm" *ngIf="controlName === 'user'">
-      <div class="row">
-        <div class="col">
-          <label class="form-label">Name</label>
-          <input
-            type="name"
-            formControlName="name"
-            class="form-control form-control-md"
-          />
-        </div>
-        <div class="col">
-          <label class="form-label">Email</label>
-          <input
-            type="email"
-            formControlName="email"
-            class="form-control form-control-md"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <label class="form-label">Password</label>
-          <input
-            type="password"
-            formControlName="password"
-            class="form-control form-control-md"
-          />
-        </div>
-        <div class="col-sm-3">
-          <label class="form-label">Status</label>
-          <input
-            type="number"
-            formControlName="status"
-            class="form-control form-control-sm"
-          />
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <label class="form-label">Select Project</label>
-          <p-dropdown
-            filterBy="project"
-            [showClear]="true"
-            [filter]="true"
-            placeholder="Select a Project"
-            class="user-dropdown"
-            [options]="dataFromUserProj"
-            optionLabel="project"
-            optionValue="id"
-            formControlName="project_id"
-          >
-          </p-dropdown>
-        </div>
-        <div class="col">
-          <label class="form-label">Select Department</label>
-          <p-dropdown
-            filterBy="department"
-            [showClear]="true"
-            [filter]="true"
-            placeholder="Select a Department"
-            class="user-dropdown"
-            [options]="dataFromUserDepart"
-            optionLabel="department"
-            optionValue="id"
-            formControlName="department_id"
-          ></p-dropdown>
-        </div>
-        <div class="col">
-          <label class="form-label">Select Designation</label>
-          <p-dropdown
-            filterBy="designation"
-            [showClear]="true"
-            [filter]="true"
-            placeholder="Select a Designation"
-            class="user-dropdown"
-            [options]="dataFromUserDesig"
-            optionLabel="designation"
-            optionValue="id"
-            formControlName="designation_id"
-          ></p-dropdown>
-        </div>
-        <div class="col">
-          <label class="form-label">Report To</label>
-          <p-dropdown
-            filterBy="name"
-            [showClear]="true"
-            [filter]="true"
-            placeholder="Select a Lead"
-            class="user-dropdown"
-            [options]="data"
-            optionLabel="name"
-            optionValue="id"
-            formControlName="report_to"
-          ></p-dropdown>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary" pButton pRipple>
-        Save
-      </button>
-    </div>
-  </form>
-</p-dialog> -->
 <p-dialog
   header="Edit Info"
   [(visible)]="visibleEdit"
-  [style]="{ width: '60vw', height: '73vh' }"
+  [style]="{ width: '60vw', height: '75vh' }"
 >
   <hr />
   <form
@@ -242,6 +98,9 @@
           type="{{ control.type }}"
         />
         <p-dropdown
+          [filter]="true"
+          filterBy="name"
+          [showClear]="true"
           *ngSwitchCase="'dropdown'"
           [formControlName]="control.key"
           [options]="control.options"
@@ -249,7 +108,12 @@
           optionValue="id"
           placeholder="Select a {{ control.label }}"
         ></p-dropdown>
-        <!-- Add more control types here as needed -->
+        <div *ngIf="form.get(control.key)?.errors?.['apiError']">
+          <small
+            class="text-danger"
+            >{{ form.get(control.key)?.errors?.['apiError'] }}</small
+          >
+        </div>
       </div>
     </div>
     <div class="row">

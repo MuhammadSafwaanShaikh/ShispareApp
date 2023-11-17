@@ -47,7 +47,7 @@ button:hover,
 }
 
 ::ng-deep .p-dropdown-items-wrapper {
-  height: 10vh;
+  height: 8vh;
 }
 
 ::ng-deep.p-dropdown-panel .p-dropdown-header {
@@ -55,14 +55,20 @@ button:hover,
 }
 
 ::ng-deep input.p-dropdown-filter.p-inputtext.p-component {
-  padding-bottom: 0px;
+  padding: 5px;
+  height: 25px;
 }
 
 .input-fields {
   padding: 8px 3px 8px 6px;
   width: 22rem;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 }
 .disabled-button {
   opacity: 0.3;
+}
+
+/* For Dropdown */
+.formgrid ::ng-deep.p-dropdown.p-component {
+  width: 22rem;
 }

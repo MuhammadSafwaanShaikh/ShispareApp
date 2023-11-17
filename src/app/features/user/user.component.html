@@ -14,5 +14,7 @@
   [formGroup]="updateUserForm"
   (submitEditFormEvent)="submitEditUserForm()"
   [formModel]="dynamicUserForm"
+  [visible]="visible"
+  [visibleEdit]="visibleEdit"
 ></app-form>
 <app-grid [tableHeading]="userTableHeading" [data]="userData"></app-grid>

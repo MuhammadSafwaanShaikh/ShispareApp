@@ -1,11 +1,12 @@
 <h3>Designation</h3>
 <app-form
   [formGroup]="designationForm"
-  controlName="designation"
   (submitFormEvent)="submitDesignationForm()"
   [formGroup]="updateDesignationForm"
   (submitEditFormEvent)="submitEditDesignationForm()"
   [formModel]="dynamicDesigForm"
+  [visible]="visible"
+  [visibleEdit]="visibleEdit"
 ></app-form>
 <app-grid
   [tableHeading]="designationTableHeading"

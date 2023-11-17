@@ -22,7 +22,8 @@ export class DesignationComponent {
   @Input() desigData: any[] = [];
   designationForm!: FormGroup;
   updateDesignationForm!: FormGroup;
-
+  visible!: boolean;
+  visibleEdit!: boolean;
   constructor(
     public featuresService: FeaturesService,
     private formService: FormService
@@ -72,29 +73,43 @@ export class DesignationComponent {
   }
 
   submitDesignationForm() {
-    if (this.designationForm.valid) {
-      this.featuresService
-        .addDesignationData(this.designationForm.value)
-        .subscribe((response) => {
+    this.featuresService
+      .addDesignationData(this.designationForm.value)
+      .subscribe(
+        (response) => {
           console.log('Data sent successfully:', response);
-          // this.loadDesignations();
-          console.log('Show data:', this.designationForm.getRawValue());
+          this.visible = false;
           this.designationForm.reset();
-        });
-    }
+          this.loadDesignations();
+        },
+        (error) => {
+          console.error(error);
+          //Validation errors returned from API
+          const apiErrors = error.error.errors;
+          this.handleApiErrors(apiErrors);
+        }
+      );
   }
 
   submitEditDesignationForm() {
     this.formService.getSelectedId().subscribe((id) => {
-      if (this.updateDesignationForm.valid) {
-        this.featuresService
-          .updateDesignationData(id, this.updateDesignationForm.value)
-          .subscribe((response) => {
+      this.featuresService
+        .updateDesignationData(id, this.updateDesignationForm.value)
+        .subscribe(
+          (response) => {
             console.log('Data updated successfully', response);
-            this.loadDesignations();
+            this.visibleEdit = false;
+
             this.updateDesignationForm.reset();
-          });
-      }
+            this.loadDesignations();
+          },
+          (error) => {
+            console.error(error);
+            //Validation errors returned from API
+            const apiErrors = error.error.errors;
+            this.handleApiErrors(apiErrors);
+          }
+        );
     });
   }
 
@@ -103,8 +118,17 @@ export class DesignationComponent {
       if (id !== null) {
         this.featuresService.deleteDesignation(id).subscribe((response) => {
           console.log('Delete Designation with ID:', response);
+
           this.loadDesignations();
         });
+      }
+    });
+  }
+  private handleApiErrors(apiErrors: any) {
+    Object.keys(apiErrors).forEach((controlName) => {
+      const formControl = this.designationForm.get(controlName);
+      if (formControl) {
+        formControl.setErrors({ apiError: apiErrors[controlName][0] });
       }
     });
   }

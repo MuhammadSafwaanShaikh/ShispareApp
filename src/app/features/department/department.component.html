@@ -6,6 +6,8 @@
   [formGroup]="updateDepartmentForm"
   (submitEditFormEvent)="submitEditDepartmentForm()"
   [formModel]="dynamicDepartForm"
+  [visible]="visible"
+  [visibleEdit]="visibleEdit"
 ></app-form>
 <app-grid [tableHeading]="departmentTableHeading" [data]="departData">
 </app-grid>

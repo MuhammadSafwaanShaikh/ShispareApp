@@ -32,7 +32,8 @@ export class UserComponent {
   @Input() userData: any[] = [];
   userForm!: FormGroup;
   updateUserForm!: FormGroup;
-
+  visible!: boolean;
+  visibleEdit!: boolean;
   constructor(
     public featuresService: FeaturesService,
     private formService: FormService
@@ -47,6 +48,9 @@ export class UserComponent {
     this.loadDesignations();
     this.loadUsers();
     this.deleteUser();
+  }
+  ngOnDestroy() {
+    this.userForm.reset();
   }
 
   generateDynamicFormModel() {
@@ -101,6 +105,13 @@ export class UserComponent {
         label: 'Select Designation',
         controlType: 'dropdown',
         type: 'text',
+        // options: this.userData.map((item) => {
+        //   console.log('Mapped Item:', item);
+        //   return {
+        //     designation_id: item.designation.id,
+        //     designation_name: item.designation.name,
+        //   };
+        // }),
         options: this.userDesigData.map((item) => ({
           id: item.id,
           label: item.designation,
@@ -114,8 +125,20 @@ export class UserComponent {
         options: this.userData.map((item) => ({
           id: item.id,
           label: item.name,
+          report_to_name: item.report_to_name,
         })),
       },
+      // {
+      //   key: 'report_to',
+      //   label: 'Report To',
+      //   controlType: 'dropdown',
+      //   type: 'text',
+      //   options: this.userData.map((item) => ({
+      //     id: item.report_to_id,
+      //     label: item.name,
+      //     report_to_name: item.report_to_name,
+      //   })),
+      // },
     ];
 
     // Assign the generated form model to the dynamicUserForm
@@ -206,14 +229,20 @@ export class UserComponent {
               id: item.id,
               name: item.name,
               email: item.email,
-              department_id: item.department_id,
-              project_id: item.project_id,
-              designation_id: item.designation_id,
+              department_id: item.department?.id,
+              department_name: item.department?.name,
+              project_id: item.project?.id,
+              project_name: item.project?.name,
+              designation_id: item.designation?.id,
+              designation_name: item.designation?.name,
               status: item.status,
-              report_to: item.report_to,
+              report_to_id: item.report_to?.id,
+              report_to_name: item.report_to?.name,
             });
           }
           this.userData = transformedData;
+          // console.log(this.userData);
+
           this.generateDynamicFormModel();
         }
       },
@@ -221,71 +250,63 @@ export class UserComponent {
   }
 
   submitUserForm() {
-    if (this.userForm.valid) {
-      this.featuresService.addUserData(this.userForm.value).subscribe(
-        (response) => {
-          console.log('Data sent successfully:', response);
-          console.log('Data sent successfully:', this.userForm.value);
-          this.loadUsers();
-          this.userForm.reset();
-          this.messages = [
-            {
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Added Successfully',
-              life: 3000,
-            },
-          ];
-        },
-        (error) => {
-          console.error(error);
-          this.messages = [
-            {
-              severity: 'error',
-              summary: 'Error',
-              detail: error.error.message,
-              life: 3000,
-            },
-          ];
-        }
-      );
-    }
+    console.log(this.userForm.value);
+
+    this.featuresService.addUserData(this.userForm.value).subscribe(
+      (response) => {
+        console.log('Data sent successfully:', response);
+        console.log('Data sent successfully:', this.userForm.value);
+        this.loadUsers();
+        this.userForm.reset();
+        this.visible = false;
+        this.messages = [
+          {
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Added Successfully',
+            life: 3000,
+          },
+        ];
+      },
+      (error) => {
+        console.error(error);
+        //Validation errors returned from API
+        const apiErrors = error.error.errors;
+        this.handleApiErrors(apiErrors);
+      }
+    );
   }
+
   // console.log(this.userForm.getRawValue());
 
   submitEditUserForm() {
     this.formService.getSelectedId().subscribe((id) => {
-      if (this.updateUserForm.valid) {
-        this.featuresService
-          .updateUserData(id, this.updateUserForm.value)
-          .subscribe(
-            (response) => {
-              console.log('Data updated successfully', response);
-              //this.featuresService.getProjects();
-              this.loadUsers();
-              this.updateUserForm.reset();
-              this.messages = [
-                {
-                  severity: 'info',
-                  summary: 'Info',
-                  detail: 'Edited Successfully',
-                  life: 3000,
-                },
-              ];
-            },
-            (error) => {
-              console.error(error);
-              this.messages = [
-                {
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: error.error.message,
-                  life: 3000,
-                },
-              ];
-            }
-          );
-      }
+      this.featuresService
+        .updateUserData(id, this.updateUserForm.value)
+        .subscribe(
+          (response) => {
+            console.log('Data updated successfully', response);
+            //this.featuresService.getProjects();
+            this.visibleEdit = false;
+            this.loadUsers();
+            this.updateUserForm.reset();
+            this.messages = [
+              {
+                severity: 'info',
+                summary: 'Info',
+                detail: 'Edited Successfully',
+                life: 3000,
+              },
+            ];
+          },
+          (error) => {
+            console.error(error);
+
+            //Validation errors returned from API
+            const apiErrors = error.error.errors;
+            this.handleApiErrors(apiErrors);
+          }
+        );
     });
   }
 
@@ -295,7 +316,23 @@ export class UserComponent {
         this.featuresService.deleteUser(id).subscribe((response) => {
           console.log('Delete User with ID: ', response);
           this.loadUsers();
+          this.messages = [
+            {
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Item Deleted',
+              life: 3000,
+            },
+          ];
         });
+      }
+    });
+  }
+  private handleApiErrors(apiErrors: any) {
+    Object.keys(apiErrors).forEach((controlName) => {
+      const formControl = this.userForm.get(controlName);
+      if (formControl) {
+        formControl.setErrors({ apiError: apiErrors[controlName][0] });
       }
     });
   }
