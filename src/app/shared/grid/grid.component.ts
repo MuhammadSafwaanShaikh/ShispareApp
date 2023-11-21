@@ -96,10 +96,11 @@ export class GridComponent {
       project_id: data.project_id,
       // report_to_id: data.report_to_id,
       report_to: data.report_to_id,
+      projStatus: data.projStatus,
     });
     this.formService.setSelectedId(this.selectedId);
-    console.log(this.updateForm.value);
-    console.log(data);
+    // console.log(this.updateForm.value);
+    // console.log(data);
   }
 
   //*ToastService

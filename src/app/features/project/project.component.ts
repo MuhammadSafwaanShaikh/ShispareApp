@@ -43,7 +43,7 @@ export class ProjectComponent {
         type: 'text',
       },
       {
-        key: 'status',
+        key: 'projStatus',
         label: 'Status',
         controlType: 'dropdown',
         type: 'text',

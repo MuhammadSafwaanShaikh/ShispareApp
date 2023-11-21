@@ -31,6 +31,12 @@ export class FeaturesService {
     return this.http.post(this.loginUrl, credentials);
   }
 
+  logoutUser(): void {
+    // Clear the authentication token from local storage
+    localStorage.removeItem('token');
+    // Add any additional cleanup logic here
+  }
+
   //! Projects API
 
   getProjects(): Observable<any[]> {

@@ -26,8 +26,8 @@ export class LoginComponent {
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
-      emailLogin: [''],
-      passwordLogin: [''],
+      email: [''],
+      password: [''],
     });
     this.form = this.formBuilder.group({
       name: '',
@@ -38,10 +38,13 @@ export class LoginComponent {
   }
 
   submitLogin() {
-    this.featuresService.loginUser(this.form.value).subscribe(
+    console.log(this.formLogin.value);
+
+    this.featuresService.loginUser(this.formLogin.value).subscribe(
       (response) => {
         console.log('Login successful', response);
         localStorage.setItem('token', response.token);
+
         this.router.navigate(['shared/designation']);
       },
       (error) => {

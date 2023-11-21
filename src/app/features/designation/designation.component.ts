@@ -33,6 +33,7 @@ export class DesignationComponent {
   }
 
   ngOnInit(): void {
+    this.generateDynamicFormModel();
     this.loadDesignations();
     this.deleteDesignation();
   }
@@ -50,6 +51,9 @@ export class DesignationComponent {
     // Assign the generated form model to the dynamicUserForm
     this.dynamicDesigForm = dynamicUserFormModel;
   }
+
+  // Call this method when needed, for example, in your showDialogEdit method
+  // after setting the values in updateForm.
   loadDesignations() {
     this.featuresService.getDesignations().subscribe((response: any) => {
       if (response && response.designations) {
@@ -63,13 +67,13 @@ export class DesignationComponent {
           });
         }
         this.desigData = transformedData;
+        this.generateDynamicFormModel();
       } else {
         console.error(
           'API response is missing departments or is in an unexpected format.'
         );
       }
     });
-    this.generateDynamicFormModel();
   }
 
   submitDesignationForm() {
@@ -99,7 +103,6 @@ export class DesignationComponent {
           (response) => {
             console.log('Data updated successfully', response);
             this.visibleEdit = false;
-
             this.updateDesignationForm.reset();
             this.loadDesignations();
           },
